@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Happy Farmer</title>
+            <meta charset="utf-8">
+            <link href="../css/stile-homepage.css" rel="stylesheet">
+            <script src="https://kit.fontawesome.com/ec08f2a466.js"></script>
+        </head>
+        <body>
+          <input type="checkbox" id="check">  
+          <label for="check">
+            <i class="fas fa-bars" id="btn"></i>
+            <i class="fas fa-times" id="cancel"></i>
+          </label>
+
+            <div class="sidebar">
+              <header>
+                <br>
+                <img class="user-logo" src="../images/userlogo.png" alt="userlogo">
+                <p class="user-name-surname">Nome Cognome</p>
+                <p class="user-email">user@domain.com</p>
+              </header>
+              <ul>
+                <li><a href="#"><i class="fas fa-list-ul"></i>Ordini</a></li>
+                <li><a href="carrello_cliente.html"><i class="fas fa-shopping-cart"></i>Carrello</a></li>
+                <li><a href="ricercaprodotti_cliente.html"><i class="fas fa-search"></i>Ricerca Prodotti</a></li>
+                <li><a href="ricercaproduttori_cliente.html"><i class="fas fa-search"></i>Ricerca Produttori</a></li>
+              </ul>
+            </div>
+
+            <div class="top">
+              <br>
+              <input type="text" id="ProductSearch" placeholder="Ricerca Prodotti">
+            <br><br>
+
+            <div class="container">
+              <div class="main">
+                <div class="category">
+                  <h1 class="category-name">Pomodori</h1> 
+                </div>
+                <script>
+                  /*
+                  SCRIPT NON FUNIONANTE
+                  var xmlHttp = new XMLHttpRequest();
+                  xmlHttp.onreadystatechange = function() { 
+                  if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                    callback(xmlHttp.responseText);
+                  }
+                  xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+                  xmlHttp.send(null);
+                  const request = new XMLHttpRequest();
+                  request.open("GET","https://happyfarmer.herokuapp.com/prodotti");
+                  request.send();
+                  var obj = JSON.parse(request.response);
+                  document.getElementById("ProductName").innerHTML = console.log(obj.nome);
+                  */
+                </script>
+                <!--INIZIO PRODOTTO-->
+                <div class="product">
+                  <br><img class="image-product" alt="product image" src="../images/pomodoro-datterino.jpg">
+                  <!-- ciclo che stampa stelle da mettere-->
+                  <h1 id="ProductName" class="product-name"></h1>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <p class="address">Via delle sugarine,12,38121 Trento TN</p>
+                  <p class="price">5€/Kg</p>
+                  <br><input class="button-add-to-cart" onclick="addToCartO()" type="button" id="addtocart" value="Aggiungi al carrello"></button>
+                </div>
+                <!--FINE PRODOTTO-->
+              </div>
+            </div>
+        </body>
+    </html>

@@ -1,0 +1,196 @@
+@media (min-width:1281px){
+
+    .html{
+        height: 100%;
+        width:100%;
+    }
+    .body{
+        display:flex;
+        max-width: 75%;
+        max-height: 75%;
+
+    }
+
+    .login-div{
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .container{
+        box-shadow: 10px 10px 30px rgba(0,0,0,0.1);
+        width: 700px;
+        height: 700px;
+        margin: 0 auto;
+    }
+
+    .login-logo{
+        border-radius: 50%;
+        height: 200px;
+        width: 200px;
+        display:flex;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .login-h2-title{
+        text-align: center;
+        font-weight : bold;
+        color: rgb(32, 32, 32);
+    }
+
+    .login-horizontal-bar{
+        width:50%;
+        margin:0 auto;
+        height:2px;
+        color:rgb(228, 227, 227);
+        background-color:rgb(173, 173, 173);
+    }
+
+    .login-horizontal-bar-2{
+        width:50%;
+        margin:0 auto;
+        
+    }
+
+    .login-div{
+        height: 90vh;
+        width: 90vh;
+        margin: 0 auto;
+    }
+
+    .login-h3-welcome{
+        text-align: center;
+        font-weight : bold;
+        color: rgb(173, 173, 173);
+    }
+    .login-button{
+        display: block; 
+        margin: auto;
+        width: 250px;
+        background-color: #db8c25; /* Orange */
+        border-radius: 8px;
+        font-weight : bold;
+        border: none;
+        color: white;
+        padding: 14px 40px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    .a{
+        color:orange;
+    }
+
+    .button-div{
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .footer-div{
+        margin: 0 auto;
+        text-align: center;
+    }
+    .footer{
+        clear: both;
+        position: relative;
+        height: 200px;
+        margin-top: 150px;
+    }
+}
+
+@media only screen and (min-width:375px){
+    .html{
+        height: 100%;
+        width:100%;
+    }
+    .body{
+        display:flex;
+        max-width: 75%;
+        max-height: 75%;
+    }
+
+    .big-containter{
+        width: 50%;
+        height: 50%;
+        overflow: auto;
+        margin: auto;
+        position: absolute;
+        top: 0; left: 0; bottom: 0; right: 0;
+        border: solid black;
+    }
+
+    .login-logo{
+        border-radius: 50%;
+        display:flex;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .login-h2-title{
+        text-align: center;
+        font-weight : bold;
+        color: rgb(32, 32, 32);
+    }
+
+    .login-h3-welcome{
+        text-align: center;
+        color: rgb(83, 83, 83);
+    }
+
+    .ancora{
+        color:orange;
+    }
+
+    .login-button{
+        display: inline-block;
+        float: none !important; 
+        position: relative;
+        width: 250px;
+        background-color: #db8c25; /* Orange */
+        border-radius: 8px;
+        font-weight : bold;
+        border: none;
+        color: white;
+        padding: 14px 40px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    .ancora{
+        color:orange;
+    }
+
+    .login-horizontal-bar-2{
+        width:50%;
+        margin:0 auto;
+        
+    }
+
+    .login-horizontal-bar{
+        width:50%;
+        margin:0 auto;
+        height:2px;
+        color:rgb(228, 227, 227);
+        background-color:rgb(173, 173, 173);
+    }
+
+    .button-div{
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .footer-div{
+        margin: 0 auto;
+        text-align: center;
+    }
+    footer{
+        clear: both;
+        position: relative;
+        height: 200px;
+        margin-top: 150px;
+    }
+}

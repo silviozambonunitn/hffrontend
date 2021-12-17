@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Home</title>
+            <meta charset="utf-8">
+            <link href="css/stile-homepage.css" rel="stylesheet">
+            <script src="https://kit.fontawesome.com/ec08f2a466.js"></script>
+            <script src="document.js"></script>
+        </head>
+        <body>
+          <input type="checkbox" id="check">  
+          <label for="check">
+            <i class="fas fa-bars" id="btn"></i>
+            <i class="fas fa-times" id="cancel"></i>
+          </label>
+
+            <div class="sidebar">
+              <header>
+                <br>
+                <img class="user-logo" src="images/userlogo.png" alt="userlogo">
+                <p class="user-name-surname">Nome Cognome</p>
+                <p class="user-email">user@domain.com</p>
+              </header>
+              <ul>
+                <li><a href="#"><i class="fas fa-list-ul"></i>Ordini</a></li>
+                <li><a href="#"><i class="fas fa-shopping-cart"></i>Carrello</a></li>
+                <li><a href="#"><i class="fas fa-search"></i>Ricerca Prodotti</a></li>
+                <li><a href="#"><i class="fas fa-search"></i>Ricerca Produttori</a></li>
+              </ul>
+            </div>
+
+            <div class="top">
+              <br>
+              <input type="text" placeholder="Ricerca Prodotti">
+
+              <!--carrello-->
+              <div id="cart" class="cart" data-totalitems="0">
+                <i class="fas fa-shopping-cart"></i>
+              </div>
+              
+              <div class="page-wrapper">
+              </div>
+            </div>
+            <!--fine carrello-->
+            <br><br>
+
+            <div class="container">
+              <div class="main">
+                <div class="category">
+                  <h1 class="category-name">Pomodori</h1> 
+                </div>
+                <!--INIZIO PRODOTTO-->
+                <div class="product">
+                  <br><img class="image-product" alt="product image" src="images/pomodoro-datterino.jpg">
+                  <!-- ciclo che stampa stelle da mettere-->
+                  <h1 class="product-name">Pomodoro datterino</h1>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <p class="address">Via delle sugarine,12,38121 Trento TN</p>
+                  <p class="price">5€/Kg</p>
+                  <br><button id="addtocart"
+                  >Aggiungi al carrello
+                    <span class="cart-item"></span>
+                  </button>
+                </div>
+                <!--FINE PRODOTTO-->
+              </div>
+            </div>
+        </body>
+    </html>

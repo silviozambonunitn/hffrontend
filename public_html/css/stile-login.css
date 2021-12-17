@@ -1,0 +1,179 @@
+@media (min-width:1281px){
+
+    .email-label{
+        font-size: 10px;
+        font-weight: bold;
+        text-align: left;
+        color:orange;
+    }
+
+    .ac{
+        font-size: 32px;
+        font-weight: bold;
+        text-align: left;
+        color:black;
+        text-align: center;
+    }
+
+    .pwd-label{
+        font-size: 10px;
+        font-weight: bold;
+        text-align: left;
+        color:orange;
+    }
+
+    .icon{
+        width:20px;
+        height:20px;
+    }
+
+    .container{
+        margin: 0 auto;
+        text-align: center;
+   
+    }
+
+    .login-logo{
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        display:flex;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hf{
+        color:rgb(179, 179, 179);
+        font-weight: bold;
+    }
+
+    .container{
+        box-shadow: 10px 10px 30px rgba(0,0,0,0.1);
+        width: 700px;
+        height: 700px;
+        margin: 0 auto;
+    }
+
+    .ancora{
+        color:orange;
+        text-align: left;
+    }
+
+    .submit{
+        display: block; 
+        margin: auto;
+        width: 250px;
+        background-color: #db8c25; /* Orange */
+        border-radius: 8px;
+        font-weight : bold;
+        border: none;
+        color: white;
+        padding: 14px 40px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    input[type=email]{
+        border: none;
+        border-bottom: 2px solid grey;
+    }
+
+      input[type=password]{
+        border: none;
+        border-bottom: 2px solid grey;
+    }
+}
+
+@media only screen and (min-width:375px){
+    .email-label{
+        font-size: 10px;
+        font-weight: bold;
+        text-align: left;
+        color:orange;
+    }
+
+    .ac{
+        font-size: 32px;
+        font-weight: bold;
+        text-align: left;
+        color:black;
+        text-align: center;
+    }
+
+    .pwd-label{
+        font-size: 10px;
+        font-weight: bold;
+        text-align: left;
+        color:orange;
+    }
+
+    .icon{
+        width:20px;
+        height:20px;
+    }
+
+    .container{
+        margin: 0 auto;
+        text-align: center;
+   
+    }
+
+    .login-logo{
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        display:flex;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hf{
+        color:rgb(179, 179, 179);
+        font-weight: bold;
+    }
+
+    .container{
+        box-shadow: 10px 10px 30px rgba(0,0,0,0.1);
+        width: 800px;
+        height: 700px;
+        margin: 0 auto;
+    }
+
+    .ancora{
+        color:orange;
+        text-align: left;
+    }
+
+    .submit{
+        display: block; 
+        margin: auto;
+        width: 250px;
+        background-color: #db8c25; /* Orange */
+        border-radius: 8px;
+        font-weight : bold;
+        border: none;
+        color: white;
+        padding: 14px 40px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    input[type=email]{
+        border: none;
+        border-bottom: 2px solid grey;
+    }
+
+    input[type=password]{
+        border: none;
+        border-bottom: 2px solid grey;
+    }   
+
+    input[type=text]{
+        border: none;
+        border-bottom: 2px solid grey;
+    } 
+}

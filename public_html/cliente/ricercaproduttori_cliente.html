@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Happy Farmer</title>
+            <meta charset="utf-8">
+            <link href="../css/stile-homepage.css" rel="stylesheet">
+            <script src="https://kit.fontawesome.com/ec08f2a466.js"></script>
+            <script src="document.js"></script>
+        </head>
+        <body>
+          <input type="checkbox" id="check">  
+          <label for="check">
+            <i class="fas fa-bars" id="btn"></i>
+            <i class="fas fa-times" id="cancel"></i>
+          </label>
+
+            <div class="sidebar">
+              <header>
+                <br>
+                <img class="user-logo" src="../images/userlogo.png" alt="userlogo">
+                <p class="user-name-surname">Nome Cognome</p>
+                <p class="user-email">user@domain.com</p>
+              </header>
+              <ul>
+                <li><a href="#"><i class="fas fa-list-ul"></i>Ordini</a></li>
+                <li><a href="carrello_cliente.html"><i class="fas fa-shopping-cart"></i>Carrello</a></li>
+                <li><a href="ricercaprodotti_cliente.html"><i class="fas fa-search"></i>Ricerca Prodotti</a></li>
+                <li><a href="ricercaproduttori_cliente.html"><i class="fas fa-search"></i>Ricerca Produttori</a></li>
+              </ul>
+            </div>
+
+            <div class="top">
+              <br>
+              <input type="text" id="ProducerSearch" placeholder="Ricerca Produttori">
+            <br><br>
+
+            <div class="container">
+              <div class="main">
+                <div class="category">
+                  <h1 class="category-name">Produttori</h1> 
+                </div>
+                <!--INIZIO PRODOTTO-->
+                <div class="producer">
+                  <br><img class="image-producer" alt="producer image" src="../images/IMG_1520.png">
+                  <!-- ciclo che stampa stelle da mettere-->
+                  <h1 class="productor-name">Simone Della Libera</h1>
+                  <p class="address">Via S.Bartolameo, 33, 38123 Trento TN</p>
+                </div>
+                <!--FINE PRODUTTORE-->
+              </div>
+            </div>
+        </body>
+    </html>
