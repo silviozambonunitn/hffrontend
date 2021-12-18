@@ -35,41 +35,80 @@
 
             <div class="container">
               <div class="main">
-                <div class="category">
-                  <h1 class="category-name">Pomodori</h1> 
-                </div>
+                <div class="container" id="listaprodotti"></div>
                 <script>
-                  /*
-                  SCRIPT NON FUNIONANTE
-                  var xmlHttp = new XMLHttpRequest();
-                  xmlHttp.onreadystatechange = function() { 
-                  if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-                    callback(xmlHttp.responseText);
+                  fetch("https://happyfarmer.herokuapp.com/prodotti")
+                          .then(function (response) {
+                              return response.json();
+                          })
+                          .then(function (data) {
+                              appendData(data);
+                          })
+                          .catch(function (err) {
+                              console.log('error: ' + err);
+                          });
+                  function appendData(data) {
+                      var listaProdotti = document.getElementById("listaprodotti");
+      
+                      var divCategoria = document.createElement('div');
+                      divCategoria.className = "category";
+      
+                      var titolo = document.createElement('h1');
+                      titolo.className = "category-name";
+      
+                      titolo.appendChild(document.createTextNode("Prodotti"));
+                      divCategoria.appendChild(titolo);
+                      
+                      listaProdotti.appendChild(divCategoria);
+      
+                      for (var i = 0; i < data.length; i++) {
+      
+                          var divMain = document.createElement('div');
+                          divMain.className = "main";
+      
+                          var divProduct = document.createElement('div');
+                          divProduct.className = "product";
+      
+                          var img = document.createElement('img');
+                          img.className = "image-product";
+                          img.setAttribute("alt", "product image");
+                          img.setAttribute("src", "../images/shrekkino.jpg")
+      
+                          var nomeProdotto = document.createElement('h1');
+                          nomeProdotto.className = "product-name";
+                          nomeProdotto.appendChild(document.createTextNode((data[i].nome)));
+      
+                          var indirizzo = document.createElement('p');
+                          indirizzo.className = "address";
+
+                          var aggiungiAlCarrello = document.createElement('input');
+                          aggiungiAlCarrello.className = "button-add-to-cart";
+                          aggiungiAlCarrello.value = "Aggiungi al Carrello";
+                          aggiungiAlCarrello.type = "button";
+      
+                          var prezzo = document.createElement('p');
+                          prezzo.className = "price";
+                          prezzo.appendChild(document.createTextNode(data[i].prezzo)).appendData("€");
+      
+                          divProduct.appendChild(document.createElement('br'));
+                          divProduct.appendChild(img);
+                          divProduct.appendChild(nomeProdotto);
+                          for (var j = 0; j < 5; j++) {
+                              var tagI = document.createElement('i');
+                              tagI.className = "fas fa-star";
+                              divProduct.appendChild(tagI);
+                          }
+                          divProduct.appendChild(indirizzo);
+                          divProduct.appendChild(prezzo);
+                          divProduct.appendChild(aggiungiAlCarrello);
+                          divProduct.appendChild(document.createElement('br'));
+      
+                          divMain.appendChild(divProduct);
+                          listaProdotti.appendChild(divMain);
+                      }
                   }
-                  xmlHttp.open("GET", theUrl, true); // true for asynchronous 
-                  xmlHttp.send(null);
-                  const request = new XMLHttpRequest();
-                  request.open("GET","https://happyfarmer.herokuapp.com/prodotti");
-                  request.send();
-                  var obj = JSON.parse(request.response);
-                  document.getElementById("ProductName").innerHTML = console.log(obj.nome);
-                  */
-                </script>
-                <!--INIZIO PRODOTTO-->
-                <div class="product">
-                  <br><img class="image-product" alt="product image" src="../images/pomodoro-datterino.jpg">
-                  <!-- ciclo che stampa stelle da mettere-->
-                  <h1 id="ProductName" class="product-name"></h1>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <p class="address">Via delle sugarine,12,38121 Trento TN</p>
-                  <p class="price">5€/Kg</p>
-                  <br><input class="button-add-to-cart" onclick="addToCartO()" type="button" id="addtocart" value="Aggiungi al carrello"></button>
-                </div>
-                <!--FINE PRODOTTO-->
+              </script>
+      
               </div>
             </div>
         </body>
