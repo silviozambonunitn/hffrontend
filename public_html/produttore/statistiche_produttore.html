@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+        <meta charset="utf-8">
+        <link href="../css/stile-homepage.css" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/ec08f2a466.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <input type="checkbox" id="check">  
+        <label for="check">
+            <i class="fas fa-bars" id="btn"></i>
+            <i class="fas fa-times" id="cancel"></i>
+        </label>
+
+        <div class="sidebar">
+            <header>
+                <br>
+                <img class="user-logo" src="../images/userlogo.png" alt="userlogo">
+                <p class="user-name-surname">Nome Cognome</p>
+                <p class="user-email">user@domain.com</p>
+            </header>
+            <ul>
+                <li><a href="#"><i class="fas fa-list-ul"></i>Ordini</a></li>
+                <li><a href="#"><i class="fas fa-shopping-bag"></i>Prodotti</a></li>
+                <li><a href="#"><i class="fas fa-chart-bar"></i>Statistiche</a></li>
+                <li><a href="#"><i class="fas fa-qrcode"></i>Scansione QR</a></li>
+            </ul>
+        </div>
+        <div class="container">
+            <div class="top">
+                <br><br><br><br><br><br>
+            </div>
+            <div class="main">
+                <div class="category">
+                    <h1 class="category-name">Statistiche</h1>
+                </div>
+                <div class="grafico">
+                    <svg></svg>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

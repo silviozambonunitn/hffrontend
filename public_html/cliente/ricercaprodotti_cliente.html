@@ -5,6 +5,7 @@
             <meta charset="utf-8">
             <link href="../css/stile-homepage.css" rel="stylesheet">
             <script src="https://kit.fontawesome.com/ec08f2a466.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         </head>
         <body>
           <input type="checkbox" id="check">  
@@ -32,7 +33,6 @@
               <br>
               <input type="text" id="ProductSearch" placeholder="Ricerca Prodotti">
             <br><br>
-
             <div class="container">
               <div class="main">
                 <div class="container" id="listaprodotti"></div>
@@ -55,6 +55,7 @@
       
                       var titolo = document.createElement('h1');
                       titolo.className = "category-name";
+                      titolo.id = "TitleProduct";
       
                       titolo.appendChild(document.createTextNode("Prodotti"));
                       divCategoria.appendChild(titolo);
@@ -108,7 +109,9 @@
                       }
                   }
               </script>
-      
+
+
+
               </div>
             </div>
         </body>
