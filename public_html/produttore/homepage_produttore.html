@@ -36,20 +36,19 @@
         </div>
         <br><br>
 
-        <div class="container" id="listaprodotti"></div>
-
+        <div class="container">
+            <a class="button" href="#" id="ricarica">
+                <i class="fas fa-redo"></i> Reload
+            </a>
+        </div>
+        <div class="container" id = "listaprodotti"></div>
         <script>
-            fetch("https://happyfarmer.herokuapp.com/prodotti")
-                    .then(function (response) {
-                        return response.json();
-                    })
-                    .then(function (data) {
-                        appendData(data);
-                    })
-                    .catch(function (err) {
-                        console.log('error: ' + err);
-                    });
-            function appendData(data) {
+            //Ajax con jQuery, $ significa jQuery
+
+            //Qui dichiaro una funzione che prende tutti i prodotti, verrà usata
+            //quando carico la pagina per la prima volta e ogni volta che premo 
+            //il bottone
+            function prendiTuttiProdotti(data, status) {
                 var listaProdotti = document.getElementById("listaprodotti");
 
                 var divCategoria = document.createElement('div');
@@ -60,7 +59,7 @@
 
                 titolo.appendChild(document.createTextNode("Prodotti"));
                 divCategoria.appendChild(titolo);
-                
+
                 listaProdotti.appendChild(divCategoria);
 
                 for (var i = 0; i < data.length; i++) {
@@ -82,9 +81,11 @@
 
                     var indirizzo = document.createElement('p');
                     indirizzo.className = "address";
+                    //indirizzo.appendChild(document.createTextNode((data[i].indirizzo)));
 
                     var prezzo = document.createElement('p');
                     prezzo.className = "price";
+                    prezzo.appendChild(document.createTextNode((data[i].prezzo)));
 
                     divProduct.appendChild(document.createElement('br'));
                     divProduct.appendChild(img);
@@ -102,6 +103,25 @@
                     listaProdotti.appendChild(divMain);
                 }
             }
+            ;
+
+            // N.B. la dicitura function dopo l'URL non è omissibile poiché
+            //jQuery la converte nel suo codice. Per ovviare al problema di sdoppiare
+            //il codice ho definito una funzione e la chiamo dentro function
+            $(document).ready(function () {
+                $.get("https://happyfarmer.herokuapp.com/prodotti", function (data, status) {
+                    prendiTuttiProdotti(data, status);
+                });
+            });
+            $(document).ready(function () {
+                $("#ricarica").click(function () {
+                    $.get("https://happyfarmer.herokuapp.com/prodotti", function (data, status) {
+                        $("#listaprodotti").empty();
+                        prendiTuttiProdotti(data, status);
+                    });
+                });
+            });
+
         </script>
     </body>
 </html>
