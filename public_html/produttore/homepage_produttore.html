@@ -85,7 +85,7 @@
 
                     var prezzo = document.createElement('p');
                     prezzo.className = "price";
-                    prezzo.appendChild(document.createTextNode((data[i].prezzo)));
+                    prezzo.appendChild(document.createTextNode((data[i].prezzo) + "€"));
 
                     divProduct.appendChild(document.createElement('br'));
                     divProduct.appendChild(img);
@@ -113,6 +113,10 @@
                     prendiTuttiProdotti(data, status);
                 });
             });
+            
+            //Ricarica dinamica dei prodotti quando premo il pulsante.
+            //Prima svuoto e poi richiamo la get.
+            //Fare css.
             $(document).ready(function () {
                 $("#ricarica").click(function () {
                     $.get("https://happyfarmer.herokuapp.com/prodotti", function (data, status) {
