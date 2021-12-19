@@ -31,7 +31,7 @@
 
         <div class="top">
             <br>
-            <input type="text" placeholder="Ricerca Prodotti">
+            <input class="barraRicercaGenerale" type="text" placeholder="Ricerca Prodotti">
             <br><br>
         </div>
         <br><br>
@@ -41,7 +41,8 @@
                 <i class="fas fa-redo"></i> Reload
             </a>
         </div>
-        <div class="container" id = "containerProdotti">
+        <div class="container" id="containerProdotti">
+            <div class="container" id="nessunaricerca">Nessun risultato trovato</div>
         </div>
         <script>
             //Ajax con jQuery, $ significa jQuery
@@ -50,7 +51,7 @@
             //quando carico la pagina per la prima volta e ogni volta che premo 
             //il bottone
             function prendiTuttiProdotti(data, status) {
-                
+
                 var containerProdotti = document.getElementById("containerProdotti");
 
                 var divCategoria = document.createElement('div');
@@ -63,14 +64,14 @@
                 divCategoria.appendChild(titolo);
 
                 containerProdotti.appendChild(divCategoria);
-                
+
                 var listaProdotti = document.createElement('ul');
                 listaProdotti.setAttribute("id", "listaprodotti");
-                
+
                 containerProdotti.appendChild(listaProdotti);
 
                 for (var i = 0; i < data.length; i++) {
-                    
+
                     var listItem = document.createElement('li');
 
                     var divMain = document.createElement('div');
@@ -119,6 +120,7 @@
             //jQuery la converte nel suo codice. Per ovviare al problema di sdoppiare
             //il codice ho definito una funzione e la chiamo dentro function
             $(document).ready(function () {
+                $("#nessunaricerca").hide()
                 $.get("https://happyfarmer.herokuapp.com/prodotti", function (data, status) {
                     prendiTuttiProdotti(data, status);
                 });
@@ -129,9 +131,43 @@
             //Fare css.
             $(document).ready(function () {
                 $("#ricarica").click(function () {
+                    $("#nessunaricerca").hide()
                     $.get("https://happyfarmer.herokuapp.com/prodotti", function (data, status) {
                         $("#containerProdotti").empty();
                         prendiTuttiProdotti(data, status);
+                    });
+                });
+            });
+
+            $(document).ready(function () {
+                $("#nessunaricerca").hide()
+                $(".barraRicercaGenerale").keyup(function () {
+
+                    //Prendo la stringa dalla barra e la inserisco in una variabile e
+                    //imposto un contatore di supporto.
+                    //Il contatore mi serve solo per mostrare una risposta in caso di mancata corrispondenza
+                    var filtro = $(this).val(), contatore = 0;
+
+                    if (contatore == 0) {
+                        $("#nessunaricerca").hide()
+                    }
+
+                    //Ciclo all'interno della lista per ogni <li>
+                    $("#listaprodotti li").each(function () {
+                        //Se in questo <li> non è presente il testo allora lo nascondo
+                        //RegExp prende il pattern filtro e esegue una ricerca,
+                        //significa insensitive
+                        if($(this).text().search(new RegExp(filtro, "i")) < 0){
+                            $(this).hide() //Qui viene nascosto
+                            if(contatore == 0){ //Se non c'è più nulla e il contatore è a 0 allora non ho trovato nulla
+                                $("#nessunaricerca").show()
+                            } else {    //Può essere che prima abbia trovato qualcosa quindi se il contatore è > 0 allora nascondo il meessaggio
+                                $("#nessunaricerca").hide()
+                            }
+                        } else {
+                            $(this).show(); //Qui è presente il pattern quindi lo mostro
+                            contatore++; //Aumento il contatore per tenermi a memoria che qualcosa l'ho trovato ad un certo punto
+                        }
                     });
                 });
             });
