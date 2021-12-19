@@ -41,7 +41,8 @@
                 <i class="fas fa-redo"></i> Reload
             </a>
         </div>
-        <div class="container" id = "listaprodotti"></div>
+        <div class="container" id = "containerProdotti">
+        </div>
         <script>
             //Ajax con jQuery, $ significa jQuery
 
@@ -49,7 +50,8 @@
             //quando carico la pagina per la prima volta e ogni volta che premo 
             //il bottone
             function prendiTuttiProdotti(data, status) {
-                var listaProdotti = document.getElementById("listaprodotti");
+                
+                var containerProdotti = document.getElementById("containerProdotti");
 
                 var divCategoria = document.createElement('div');
                 divCategoria.className = "category";
@@ -60,9 +62,16 @@
                 titolo.appendChild(document.createTextNode("Prodotti"));
                 divCategoria.appendChild(titolo);
 
-                listaProdotti.appendChild(divCategoria);
+                containerProdotti.appendChild(divCategoria);
+                
+                var listaProdotti = document.createElement('ul');
+                listaProdotti.setAttribute("id", "listaprodotti");
+                
+                containerProdotti.appendChild(listaProdotti);
 
                 for (var i = 0; i < data.length; i++) {
+                    
+                    var listItem = document.createElement('li');
 
                     var divMain = document.createElement('div');
                     divMain.className = "main";
@@ -100,7 +109,8 @@
                     divProduct.appendChild(document.createElement('br'));
 
                     divMain.appendChild(divProduct);
-                    listaProdotti.appendChild(divMain);
+                    listItem.appendChild(divMain);
+                    listaProdotti.appendChild(listItem);
                 }
             }
             ;
@@ -113,14 +123,14 @@
                     prendiTuttiProdotti(data, status);
                 });
             });
-            
+
             //Ricarica dinamica dei prodotti quando premo il pulsante.
             //Prima svuoto e poi richiamo la get.
             //Fare css.
             $(document).ready(function () {
                 $("#ricarica").click(function () {
                     $.get("https://happyfarmer.herokuapp.com/prodotti", function (data, status) {
-                        $("#listaprodotti").empty();
+                        $("#containerProdotti").empty();
                         prendiTuttiProdotti(data, status);
                     });
                 });
