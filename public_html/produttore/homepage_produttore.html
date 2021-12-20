@@ -23,26 +23,21 @@
             </header>
             <ul>
                 <li><a href="#"><i class="fas fa-list-ul"></i>Ordini</a></li>
-                <li><a href="#"><i class="fas fa-shopping-bag"></i>Prodotti</a></li>
-                <li><a href="#"><i class="fas fa-chart-bar"></i>Statistiche</a></li>
+                <li><a href="homepage_produttore.html"><i class="fas fa-shopping-bag"></i>Prodotti</a></li>
+                <li><a href="statistiche_produttore.html"><i class="fas fa-chart-bar"></i>Statistiche</a></li>
                 <li><a href="#"><i class="fas fa-qrcode"></i>Scansione QR</a></li>
+                <li><a href="../index.html"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
             </ul>
         </div>
 
         <div class="top">
             <br>
             <input class="barraRicercaGenerale" type="text" placeholder="Ricerca Prodotti">
+            <button class="button-refresh">Ricarica <i class="fa fa-refresh"></i></button>
             <br><br>
         </div>
         <br><br>
-
-        <div class="container">
-            <a class="button" href="#" id="ricarica">
-                <i class="fas fa-redo"></i> Reload
-            </a>
-        </div>
         <div class="container" id="containerProdotti">
-            <div class="container" id="nessunaricerca">Nessun risultato trovato</div>
         </div>
         <script>
             //Ajax con jQuery, $ significa jQuery
@@ -113,6 +108,12 @@
                     listItem.appendChild(divMain);
                     listaProdotti.appendChild(listItem);
                 }
+
+                var divNessunaRicerca = document.createElement('div');
+                divNessunaRicerca.className = "nessunaricerca";
+                divNessunaRicerca.appendChild(document.createTextNode("Nessun risultato"));
+
+                containerProdotti.appendChild(divNessunaRicerca);
             }
             ;
 
@@ -120,9 +121,9 @@
             //jQuery la converte nel suo codice. Per ovviare al problema di sdoppiare
             //il codice ho definito una funzione e la chiamo dentro function
             $(document).ready(function () {
-                $("#nessunaricerca").hide()
                 $.get("https://happyfarmer.herokuapp.com/prodotti", function (data, status) {
                     prendiTuttiProdotti(data, status);
+                    $(".nessunaricerca").hide();
                 });
             });
 
@@ -130,17 +131,17 @@
             //Prima svuoto e poi richiamo la get.
             //Fare css.
             $(document).ready(function () {
-                $("#ricarica").click(function () {
-                    $("#nessunaricerca").hide()
+                $(".button-refresh").click(function () {
                     $.get("https://happyfarmer.herokuapp.com/prodotti", function (data, status) {
                         $("#containerProdotti").empty();
                         prendiTuttiProdotti(data, status);
+                        $(".nessunaricerca").hide();
                     });
                 });
             });
 
             $(document).ready(function () {
-                $("#nessunaricerca").hide()
+                $(".nessunaricerca").hide()
                 $(".barraRicercaGenerale").keyup(function () {
 
                     //Prendo la stringa dalla barra e la inserisco in una variabile e
@@ -149,7 +150,7 @@
                     var filtro = $(this).val(), contatore = 0;
 
                     if (contatore == 0) {
-                        $("#nessunaricerca").hide()
+                        $(".nessunaricerca").hide()
                     }
 
                     //Ciclo all'interno della lista per ogni <li>
@@ -157,12 +158,12 @@
                         //Se in questo <li> non è presente il testo allora lo nascondo
                         //RegExp prende il pattern filtro e esegue una ricerca,
                         //significa insensitive
-                        if($(this).text().search(new RegExp(filtro, "i")) < 0){
+                        if ($(this).text().search(new RegExp(filtro, "i")) < 0) {
                             $(this).hide() //Qui viene nascosto
-                            if(contatore == 0){ //Se non c'è più nulla e il contatore è a 0 allora non ho trovato nulla
-                                $("#nessunaricerca").show()
+                            if (contatore == 0) { //Se non c'è più nulla e il contatore è a 0 allora non ho trovato nulla
+                                $(".nessunaricerca").show()
                             } else {    //Può essere che prima abbia trovato qualcosa quindi se il contatore è > 0 allora nascondo il meessaggio
-                                $("#nessunaricerca").hide()
+                                $(".nessunaricerca").hide()
                             }
                         } else {
                             $(this).show(); //Qui è presente il pattern quindi lo mostro
