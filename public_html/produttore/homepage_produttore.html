@@ -95,10 +95,17 @@
                     divProduct.appendChild(document.createElement('br'));
                     divProduct.appendChild(img);
                     divProduct.appendChild(nomeProdotto);
-                    for (var j = 0; j < 5; j++) {
-                        var tagI = document.createElement('i');
-                        tagI.className = "fas fa-star";
-                        divProduct.appendChild(tagI);
+                    var sommaQualitàPrezzo = 0;
+                    for (let j = 0; j < data[i].recensioni.length; j++) {
+                        sommaQualitàPrezzo += data[i].recensioni[j].qualitàPrezzo;
+                        if (j === data[i].recensioni.length) { //Se sono arrivato all'ultimo
+                            sommaQualitàPrezzo = Math.round(sommaQualitàPrezzo);
+                            for (let k = 0; k < sommaQualitàPrezzo; k++) {
+                                var tagI = document.createElement('i');
+                                tagI.className = "fas fa-star";
+                                divProduct.appendChild(tagI);
+                            }
+                        }
                     }
                     divProduct.appendChild(indirizzo);
                     divProduct.appendChild(prezzo);
