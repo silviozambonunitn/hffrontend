@@ -208,7 +208,6 @@ input[type=text]{
   padding: 14px 40px;
   text-decoration: none;
   font-size: 16px;
-
 }
 
 .button-add-to-cart{
@@ -224,6 +223,21 @@ input[type=text]{
   text-align: center;
   text-decoration: none;
   display: inline-block;
+  font-size: 16px;
+}
+
+.button-invio{
+  display: block; 
+  margin: auto;
+  width: 250px;
+  background-color: #db8c25; /* Orange */
+  border-radius: 8px;
+  font-weight : bold;
+  border: none;
+  color: white;
+  padding: 14px 40px;
+  text-align: center;
+  text-decoration: none;
   font-size: 16px;
 }
 
@@ -330,9 +344,20 @@ th{
   text-align: justify;
 }
 
-.map{
-  height: 400px;
-  /* The height is 400 pixels */
-  width: 100%;
-  /* The width is the width of the web page */
+.formp{
+  font-size: 20px;
+  display: block;
+  text-align: center;
+  color: orange;
 }
+
+.stocazzo{
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+
+
