@@ -6,6 +6,7 @@
         <link href="../css/stile-homepage.css" rel="stylesheet">
         <script src="https://kit.fontawesome.com/ec08f2a466.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     </head>
     <body>
         <input type="checkbox" id="check">  
@@ -24,8 +25,8 @@
             <ul>
                 <li><a href="#"><i class="fas fa-list-ul"></i>Ordini</a></li>
                 <li><a href="#"><i class="fas fa-shopping-bag"></i>Prodotti</a></li>
-                <li><a href="#"><i class="fas fa-chart-bar"></i>Statistiche</a></li>
-                <li><a href="#"><i class="fas fa-qrcode"></i>Scansione QR</a></li>
+                <li><a href="statistiche_produttore.html"><i class="fas fa-chart-bar"></i>Statistiche</a></li>
+                <li><a href="qrcode_produttore.html"><i class="fas fa-qrcode"></i>Scansione QR</a></li>
             </ul>
         </div>
         <div class="container">
@@ -37,8 +38,54 @@
                     <h1 class="category-name">Statistiche</h1>
                 </div>
                 <div class="grafico">
-                    <svg></svg>
+                    <canvas id="piechart"></canvas>
                 </div>
+                   <script>
+                       var xValues = ["Frutta", "Verdura", "Legumi", "Latticini", "Frumento"];
+                       var yValues = [55, 49, 44, 24, 15];
+                       var barColors = ["red", "green","blue","orange","brown"];
+                       new Chart("piechart", {
+                        type: "doughnut",
+                        data: {
+                            labels: xValues,
+                            datasets: [{
+                                backgroundColor: barColors,
+                                data: yValues
+                            }]
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: "Vendite per tipo alimenti"
+                            }
+                        }
+                        });
+                   </script>
+                   <br>
+                   <div class="category">
+                    <h1 class="category-name">Tabelle</h1>
+                </div>
+                <br>
+                <table class="ultimeVendite">
+                    <tr>
+                        <th>Articolo</th>
+                        <th>Prezzo</th>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>sassi</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>cazzii</td>
+                            <td>500</td>
+                        </tr>
+                        <tr>
+                            <td>sifilide</td>
+                            <td>150</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </body>
