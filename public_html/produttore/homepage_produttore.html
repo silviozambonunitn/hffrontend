@@ -25,7 +25,7 @@
                 <li><a href="#"><i class="fas fa-list-ul"></i>Ordini</a></li>
                 <li><a href="homepage_produttore.html"><i class="fas fa-shopping-bag"></i>Prodotti</a></li>
                 <li><a href="statistiche_produttore.html"><i class="fas fa-chart-bar"></i>Statistiche</a></li>
-                <li><a href="#"><i class="fas fa-qrcode"></i>Scansione QR</a></li>
+                <li><a href="qrcode_produttore.html"><i class="fas fa-qrcode"></i>Scansione QR</a></li>
                 <li><a href="../index.html"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
             </ul>
         </div>
@@ -84,7 +84,7 @@
                     var img = document.createElement('img');
                     img.className = "image-product";
                     img.setAttribute("alt", "product image");
-                    img.setAttribute("src", "../images/shrekkino.jpg")
+                    img.setAttribute("src", "../images/lobster_dog_cut.jpg")
 
                     var nomeProdotto = document.createElement('h1');
                     nomeProdotto.className = "product-name";
@@ -96,7 +96,7 @@
 
                     var prezzo = document.createElement('p');
                     prezzo.className = "price";
-                    prezzo.appendChild(document.createTextNode((data[i].prezzo) + "€"));
+                    prezzo.appendChild(document.createTextNode((data[i].prezzo) + " €/kg"));
 
                     divProduct.appendChild(document.createElement('br'));
                     divProduct.appendChild(img);

@@ -129,10 +129,9 @@ input[type=text]{
 }
 
 .container{
-    padding-left:5px;
+    padding-top: 1%;
     width: 100%;
     height: 100%;
-    box-shadow: 10px 10px 30px rgba(0,0,0,0.1);
 }
 
 .product{
@@ -208,7 +207,7 @@ input[type=text]{
     padding: 14px 40px;
     text-decoration: none;
     font-size: 16px;
-    
+
 }
 
 .button-add-to-cart{
@@ -365,10 +364,15 @@ th{
     color: orange;
 }
 
-.stocazzo{
-    margin: 0;
-    position: absolute;
+.button-send{
+    margin: 1%;
+    padding: 1%;
+    display: block;
     left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+}
+
+#select_disponibilità{
+    text-align: center;
+    display: flex;
+    margin: auto;
 }
