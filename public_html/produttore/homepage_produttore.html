@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Home</title>
+        <title>Happy farmer - Prodotti</title>
         <meta charset="utf-8">
         <link href="../css/stile-homepage.css" rel="stylesheet">
         <script src="https://kit.fontawesome.com/ec08f2a466.js"></script>
@@ -93,10 +93,6 @@
                     prezzo.className = "price";
                     prezzo.appendChild(document.createTextNode((data[i].prezzo) + " €/kg"));
 
-                    var idProdotto = document.createElement('p');
-                    idProdotto.className = "id";
-                    idProdotto.appendChild(document.createTextNode("ID: " + data[i].id));
-
 
                     var bottoneModifica = document.createElement('button');
                     bottoneModifica.className = "button-modify";
@@ -106,6 +102,8 @@
                     var bottoneElimina = document.createElement('button');
                     bottoneElimina.className = "button-delete";
                     bottoneElimina.setAttribute("type", "button");
+                    bottoneElimina.setAttribute("id", data[i].id);
+                    bottoneElimina.setAttribute("onClick", "elimina(this.id)");
                     bottoneElimina.appendChild(document.createTextNode("Elimina"));
 
                     divProduct.appendChild(document.createElement('br'));
@@ -125,8 +123,6 @@
                     }
                     divProduct.appendChild(indirizzo);
                     divProduct.appendChild(prezzo);
-                    divProduct.appendChild(idProdotto);
-                    idProdotto.style.display = "none";
                     divProduct.appendChild(bottoneModifica);
                     divProduct.appendChild(bottoneElimina);
                     divProduct.appendChild(document.createElement('br'));
@@ -200,21 +196,30 @@
                 });
             });
 
-            $(document).ready(function () {
-                $(this).closest(".product").click(function () {
-                    var id = $(".button-delete").siblings('.id').value;
-                    var url = "https://happyfarmer.herokuapp.com/prodotti/" + id;
+            //Questa funzione viene chiamata dal botton
+            //Bind nel tag HTML chiama questa funzione passandogli il suo id
+            function elimina(idCliccato) {
+                $(document).ready(function () {
+                    var url = "https://happyfarmer.herokuapp.com/prodotti/" + idCliccato;
                     var settings = {
                         "url": url,
                         "method": "DELETE",
                         "timeout": 0
                     };
-                    $.ajax(settings).done(function (response) {
-                        console.log(response);
-                    });
-                });
-            });
 
+                    $.ajax(settings).done(function (response) {
+                        //Svuoto e ricarico la pagina
+                        $.get("https://happyfarmer.herokuapp.com/prodotti", function (data, status) {
+                            $("#containerProdotti").empty();
+                            prendiTuttiProdotti(data, status);
+                            $(".nessunaricerca").hide();
+                        });
+                    });
+
+                });
+
+
+            }
 
         </script>
     </body>
