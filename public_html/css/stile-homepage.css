@@ -376,3 +376,10 @@ th{
     display: flex;
     margin: auto;
 }
+
+.error{
+    outline-style: solid;
+    outline-color: red;
+    outline-width: 1.5px;
+    outline-offset: 1px;
+}

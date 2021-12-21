@@ -31,7 +31,7 @@
             </ul>
         </div>
         <div class="container">
-            <form>
+            <form id="formProdotto">
                 <p class="formp">Nome</p>
                 <input type="text" id="productname" required>
                 <p class="formp">Categoria</p>
@@ -54,15 +54,17 @@
         </div>
         <script>
             $(document).ready(function () {
+                $('#formProdotto input[type="text"]').blur(function () {
+                    if (!$(this).val()) {
+                        $(this).addClass("error");
+                    } else {
+                        $(this).removeClass("error");
+                    }
+                });
+            });
+
+            $(document).ready(function () {
                 $(".button-invio").click(function () {
-                    //var prodottoJSON = new Object();
-                    //prodottoJSON.nome = document.getElementById("productname").value;
-                    //prodottoJSON.categoria = document.getElementById("productcategory").value;
-                    //prodottoJSON.prezzo = document.getElementById("pricekg").value;
-                    //prodottoJSON.minQuantity = document.getElementById("minquantity").value;
-                    //prodottoJSON.maxQuantity = document.getElementById("availablequantity").value;
-                    //var select = document.getElementById("select_disponibilità");
-                    //prodottoJSON.disponibilità = select.options[select.selectedIndex].value;
                     var settings = {
                         "url": "https://happyfarmer.herokuapp.com/prodotti",
                         "method": "POST",
@@ -71,12 +73,12 @@
                             "Content-Type": "application/json"
                         },
                         "data": JSON.stringify({
-                            "nome": "Zucchina Bio",
-                            "prezzo": 10,
-                            "categoria": "Zucchine",
-                            "disponibile": true,
-                            "minQuantity": 1,
-                            "maxQuantity": 20
+                            "nome": document.getElementById("productname").value,
+                            "categoria": document.getElementById("productcategory").value,
+                            "prezzo": document.getElementById("pricekg").value,
+                            "minQuantity": document.getElementById("minquantity").value,
+                            "maxQuantity": document.getElementById("availablequantity").value,
+                            "disponibile": document.getElementById("select_disponibilità").options[document.getElementById("select_disponibilità").selectedIndex].value
                         })
                     };
 
