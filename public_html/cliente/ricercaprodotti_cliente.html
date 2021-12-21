@@ -1,118 +1,215 @@
 <!DOCTYPE html>
-    <html>
-        <head>
-            <title>Happy Farmer</title>
-            <meta charset="utf-8">
-            <link href="../css/stile-homepage.css" rel="stylesheet">
-            <script src="https://kit.fontawesome.com/ec08f2a466.js"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        </head>
-        <body>
-          <input type="checkbox" id="check">  
-          <label for="check">
+<html>
+    <head>
+        <title>Home</title>
+        <meta charset="utf-8">
+        <link href="../css/stile-homepage.css" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/ec08f2a466.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <input type="checkbox" id="check">  
+        <label for="check">
             <i class="fas fa-bars" id="btn"></i>
             <i class="fas fa-times" id="cancel"></i>
-          </label>
+        </label>
 
-            <div class="sidebar">
-              <header>
+        <div class="sidebar">
+            <header>
                 <br>
                 <img class="user-logo" src="../images/userlogo.png" alt="userlogo">
                 <p class="user-name-surname">Nome Cognome</p>
                 <p class="user-email">user@domain.com</p>
-              </header>
-              <ul>
+            </header>
+            <ul>
                 <li><a href="#"><i class="fas fa-list-ul"></i>Ordini</a></li>
-                <li><a href="carrello_cliente.html"><i class="fas fa-shopping-cart"></i>Carrello</a></li>
-                <li><a href="ricercaprodotti_cliente.html"><i class="fas fa-search"></i>Ricerca Prodotti</a></li>
+                <li><a href="carrello_cliente.html"><i class="fas fa-shopping-bag"></i>Carrello</a></li>
+                <li><a href="ricercaproduttori_cliente.html"><i class="fas fa-search"></i>Ricerca Prodotti</a></li>
                 <li><a href="ricercaproduttori_cliente.html"><i class="fas fa-search"></i>Ricerca Produttori</a></li>
-              </ul>
-            </div>
+                <li><a href="../index.html"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+            </ul>
+        </div>
 
-            <div class="top">
-              <br>
-              <input type="text" id="ProductSearch" placeholder="Ricerca Prodotti">
+        <div class="top">
+            <br>
+            <input class="barraRicercaGenerale" type="text" placeholder="Ricerca Prodotti">
+            <button class="button-refresh">Ricarica <i class="fa fa-refresh"></i></button>
             <br><br>
-            <div class="container">
-              <div class="main">
-                <div class="container" id="listaprodotti"></div>
-                <script>
-                  fetch("https://happyfarmer.herokuapp.com/prodotti")
-                          .then(function (response) {
-                              return response.json();
-                          })
-                          .then(function (data) {
-                              appendData(data);
-                          })
-                          .catch(function (err) {
-                              console.log('error: ' + err);
-                          });
-                  function appendData(data) {
-                      var listaProdotti = document.getElementById("listaprodotti");
-      
-                      var divCategoria = document.createElement('div');
-                      divCategoria.className = "category";
-      
-                      var titolo = document.createElement('h1');
-                      titolo.className = "category-name";
-                      titolo.id = "TitleProduct";
-      
-                      titolo.appendChild(document.createTextNode("Prodotti"));
-                      divCategoria.appendChild(titolo);
-                      
-                      listaProdotti.appendChild(divCategoria);
-      
-                      for (var i = 0; i < data.length; i++) {
-      
-                          var divMain = document.createElement('div');
-                          divMain.className = "main";
-      
-                          var divProduct = document.createElement('div');
-                          divProduct.className = "product";
-      
-                          var img = document.createElement('img');
-                          img.className = "image-product";
-                          img.setAttribute("alt", "product image");
-                          img.setAttribute("src", "../images/shrekkino.jpg")
-      
-                          var nomeProdotto = document.createElement('h1');
-                          nomeProdotto.className = "product-name";
-                          nomeProdotto.appendChild(document.createTextNode((data[i].nome)));
-      
-                          var indirizzo = document.createElement('p');
-                          indirizzo.className = "address";
+        </div>
 
-                          var aggiungiAlCarrello = document.createElement('input');
-                          aggiungiAlCarrello.className = "button-add-to-cart";
-                          aggiungiAlCarrello.value = "Aggiungi al Carrello";
-                          aggiungiAlCarrello.type = "button";
-      
-                          var prezzo = document.createElement('p');
-                          prezzo.className = "price";
-                          prezzo.appendChild(document.createTextNode(data[i].prezzo)).appendData("€");
-      
-                          divProduct.appendChild(document.createElement('br'));
-                          divProduct.appendChild(img);
-                          divProduct.appendChild(nomeProdotto);
-                          for (var j = 0; j < 5; j++) {
-                              var tagI = document.createElement('i');
-                              tagI.className = "fas fa-star";
-                              divProduct.appendChild(tagI);
-                          }
-                          divProduct.appendChild(indirizzo);
-                          divProduct.appendChild(prezzo);
-                          divProduct.appendChild(aggiungiAlCarrello);
-                          divProduct.appendChild(document.createElement('br'));
-      
-                          divMain.appendChild(divProduct);
-                          listaProdotti.appendChild(divMain);
-                      }
-                  }
-              </script>
+        <div class="container" id = "containerProdotti">
+        </div>
+        <script>
+            //Ajax con jQuery, $ significa jQuery
+
+            //Qui dichiaro una funzione che prende tutti i prodotti, verrà usata
+            //quando carico la pagina per la prima volta e ogni volta che premo 
+            //il bottone
+            function prendiTuttiProdotti(data, status) {
+
+                var containerProdotti = document.getElementById("containerProdotti");
+
+                var divCategoria = document.createElement('div');
+                divCategoria.className = "category";
+
+                var titolo = document.createElement('h1');
+                titolo.className = "category-name";
+
+                titolo.appendChild(document.createTextNode("Prodotti"));
+                divCategoria.appendChild(titolo);
+
+                containerProdotti.appendChild(divCategoria);
+
+                var listaProdotti = document.createElement('ul');
+                listaProdotti.setAttribute("id", "listaprodotti");
+
+                containerProdotti.appendChild(listaProdotti);
+
+                for (var i = 0; i < data.length; i++) {
+
+                    var listItem = document.createElement('li');
+
+                    var divMain = document.createElement('div');
+                    divMain.className = "main";
+
+                    var divProduct = document.createElement('div');
+                    divProduct.className = "product";
+
+                    var img = document.createElement('img');
+                    img.className = "image-product";
+                    img.setAttribute("alt", "product image");
+                    img.setAttribute("src", "../images/lobster_dog_cut.jpg")
+
+                    var nomeProdotto = document.createElement('h1');
+                    nomeProdotto.className = "product-name";
+                    nomeProdotto.appendChild(document.createTextNode((data[i].nome)));
+
+                    var indirizzo = document.createElement('p');
+                    indirizzo.className = "address";
+                    //indirizzo.appendChild(document.createTextNode((data[i].indirizzo)));
+
+                    var prezzo = document.createElement('p');
+                    prezzo.className = "price";
+                    prezzo.appendChild(document.createTextNode((data[i].prezzo) + " €/kg"));
+
+                    var idProdotto = document.createElement('p');
+                    idProdotto.className = "id";
+                    idProdotto.appendChild(document.createTextNode("ID: " + data[i].id));
 
 
+                    var bottoneAggiungi = document.createElement('button');
+                    bottoneAggiungi.className = "button-add-to-cart";
+                    bottoneAggiungi.setAttribute("type", "button");
+                    bottoneAggiungi.appendChild(document.createTextNode("Aggiungi al carrello"));
 
-              </div>
-            </div>
-        </body>
-    </html>
+
+                    divProduct.appendChild(document.createElement('br'));
+                    divProduct.appendChild(img);
+                    divProduct.appendChild(nomeProdotto);
+                    var sommaQualitàPrezzo = 0;
+                    for (let j = 0; j < data[i].recensioni.length; j++) {
+                        sommaQualitàPrezzo += data[i].recensioni[j].qualitàPrezzo;
+                        if (j === data[i].recensioni.length) { //Se sono arrivato all'ultimo
+                            sommaQualitàPrezzo = Math.round(sommaQualitàPrezzo);
+                            for (let k = 0; k < sommaQualitàPrezzo; k++) {
+                                var tagI = document.createElement('i');
+                                tagI.className = "fas fa-star";
+                                divProduct.appendChild(tagI);
+                            }
+                        }
+                    }
+                    divProduct.appendChild(indirizzo);
+                    divProduct.appendChild(prezzo);
+                    divProduct.appendChild(idProdotto);
+                    idProdotto.style.display = "none";
+                    divProduct.appendChild(bottoneAggiungi);
+                    divProduct.appendChild(document.createElement('br'));
+
+                    divMain.appendChild(divProduct);
+                    listItem.appendChild(divMain);
+                    listaProdotti.appendChild(listItem);
+                }
+
+                var divNessunaRicerca = document.createElement('div');
+                divNessunaRicerca.className = "nessunaricerca";
+                divNessunaRicerca.appendChild(document.createTextNode("Nessun risultato"));
+
+                containerProdotti.appendChild(divNessunaRicerca);
+            }
+            ;
+
+            // N.B. la dicitura function dopo l'URL non è omissibile poiché
+            //jQuery la converte nel suo codice. Per ovviare al problema di sdoppiare
+            //il codice ho definito una funzione e la chiamo dentro function
+            $(document).ready(function () {
+                $.get("https://happyfarmer.herokuapp.com/prodotti", function (data, status) {
+                    prendiTuttiProdotti(data, status);
+                    $(".nessunaricerca").hide();
+                });
+            });
+
+            //Ricarica dinamica dei prodotti quando premo il pulsante.
+            //Prima svuoto e poi richiamo la get.
+            //Fare css.
+            $(document).ready(function () {
+                $(".button-refresh").click(function () {
+                    $.get("https://happyfarmer.herokuapp.com/prodotti", function (data, status) {
+                        $("#containerProdotti").empty();
+                        prendiTuttiProdotti(data, status);
+                        $(".nessunaricerca").hide();
+                    });
+                });
+            });
+
+            $(document).ready(function () {
+                $(".nessunaricerca").hide()
+                $(".barraRicercaGenerale").keyup(function () {
+
+                    //Prendo la stringa dalla barra e la inserisco in una variabile e
+                    //imposto un contatore di supporto.
+                    //Il contatore mi serve solo per mostrare una risposta in caso di mancata corrispondenza
+                    var filtro = $(this).val(), contatore = 0;
+
+                    if (contatore == 0) {
+                        $(".nessunaricerca").hide()
+                    }
+
+                    //Ciclo all'interno della lista per ogni <li>
+                    $("#listaprodotti li").each(function () {
+                        //Se in questo <li> non è presente il testo allora lo nascondo
+                        //RegExp prende il pattern filtro e esegue una ricerca,
+                        //significa insensitive
+                        if ($(this).text().search(new RegExp(filtro, "i")) < 0) {
+                            $(this).hide() //Qui viene nascosto
+                            if (contatore == 0) { //Se non c'è più nulla e il contatore è a 0 allora non ho trovato nulla
+                                $(".nessunaricerca").show()
+                            } else {    //Può essere che prima abbia trovato qualcosa quindi se il contatore è > 0 allora nascondo il meessaggio
+                                $(".nessunaricerca").hide()
+                            }
+                        } else {
+                            $(this).show(); //Qui è presente il pattern quindi lo mostro
+                            contatore++; //Aumento il contatore per tenermi a memoria che qualcosa l'ho trovato ad un certo punto
+                        }
+                    });
+                });
+            });
+
+            $(document).ready(function () {
+                $(this).closest(".product").click(function () {
+                    var id = $(".button-delete").siblings('.id').value;
+                    var url = "https://happyfarmer.herokuapp.com/prodotti/" + id;
+                    var settings = {
+                        "url": url,
+                        "method": "DELETE",
+                        "timeout": 0
+                    };
+                    $.ajax(settings).done(function (response) {
+                        console.log(response);
+                    });
+                });
+            });
+
+
+        </script>
+    </body>
+</html>
