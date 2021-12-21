@@ -178,24 +178,6 @@ input[type=text]{
     padding-left: 10px;
 }
 
-.button-modify{
-    display: inline-block; 
-    margin: 1%;
-    width: 10%;
-    background-color: #db8c25; /* Orange */
-    border-radius: 8px;
-    border-width: 1.5px;
-    font-weight : bold;
-    color: white;
-    padding: 1%;
-    text-align: center;
-    text-decoration: none;
-    font-size: 80%;
-}
-
-.button-modify:hover{
-    background-color: orange;
-}
 
 .button-update{
     display: block; 
@@ -247,6 +229,22 @@ input[type=text]{
     font-size: 16px;
 }
 
+.button-invio{
+    display: block; 
+    margin: auto;
+    width: 250px;
+    background-color: #db8c25; /* Orange */
+    border-radius: 8px;
+    font-weight : bold;
+    border: none;
+    color: white;
+    padding: 14px 40px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/*Kekko*/
 .button-refresh{
     border-width: 1.5px;
     float: right;
@@ -265,10 +263,51 @@ input[type=text]{
     background-color: orange;
 }
 
+/*Kekko*/
+.button-addToCart{
+    display: inline-block; 
+    margin: 1%;
+    padding: 1%;
+    width: 15%;
+    background-color: #db8c25; /* Orange */
+    border-radius: 8px;
+    border-width: 1.5px;
+    font-weight : bold;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 80%;
+}
+
+.button-addToCart:hover{
+    background-color: orange;
+}
+
+/*Kekko*/
+.button-modify{
+    display: inline-block; 
+    margin: 1%;
+    width: 15%;
+    background-color: #db8c25; /* Orange */
+    border-radius: 8px;
+    border-width: 1.5px;
+    font-weight : bold;
+    color: white;
+    padding: 1%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 80%;
+}
+
+.button-modify:hover{
+    background-color: orange;
+}
+
+/*Kekko*/
 .button-delete{
     display: inline-block; 
     margin: 1%;
-    width: 10%;
+    width: 15%;
     background-color: #db8c25; /* Orange */
     border-radius: 8px;
     border-width: 1.5px;
@@ -282,21 +321,6 @@ input[type=text]{
 
 .button-delete:hover{
     background-color: orange;
-}
-
-.button-invio{
-    display: block; 
-    margin: auto;
-    width: 250px;
-    background-color: #db8c25; /* Orange */
-    border-radius: 8px;
-    font-weight : bold;
-    border: none;
-    color: white;
-    padding: 14px 40px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
 }
 
 .icon-carrello{

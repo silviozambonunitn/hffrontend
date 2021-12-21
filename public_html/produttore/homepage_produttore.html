@@ -50,13 +50,34 @@
 
                 var containerProdotti = document.getElementById("containerProdotti");
 
+                var sezioneCarrello = document.createElement('div');
+                sezioneCarrello.className = "category";
+
+                var titoloCarrello = document.createElement('h1');
+                titoloCarrello.className = "category-name";
+                titoloCarrello.appendChild(document.createTextNode("Carrello"));
+
+                sezioneCarrello.appendChild(titoloCarrello);
+                containerProdotti.appendChild(sezioneCarrello);
+
+                var listaCarrello = document.createElement('ul');
+                listaCarrello.setAttribute("id", "listaCarrello");
+
+                containerProdotti.appendChild(listaCarrello);
+
+                var nessunaEntryCarrello = document.createElement('div');
+                nessunaEntryCarrello.className = "nessunaEntryCarrello";
+                nessunaEntryCarrello.appendChild(document.createTextNode("Nessun elemento nel carrello"));
+
+                listaCarrello.appendChild(nessunaEntryCarrello);
+
                 var divCategoria = document.createElement('div');
                 divCategoria.className = "category";
 
                 var titolo = document.createElement('h1');
                 titolo.className = "category-name";
-
                 titolo.appendChild(document.createTextNode("Prodotti"));
+
                 divCategoria.appendChild(titolo);
 
                 containerProdotti.appendChild(divCategoria);
@@ -69,9 +90,6 @@
                 for (var i = 0; i < data.length; i++) {
 
                     var listItem = document.createElement('li');
-
-                    var divMain = document.createElement('div');
-                    divMain.className = "main";
 
                     var divProduct = document.createElement('div');
                     divProduct.className = "product";
@@ -93,6 +111,9 @@
                     prezzo.className = "price";
                     prezzo.appendChild(document.createTextNode((data[i].prezzo) + " €/kg"));
 
+                    var disponibilità = document.createElement('p');
+                    disponibilità.className = "disponibilità";
+                    disponibilità.appendChild(document.createTextNode("Disponibile: " + (data[i].disponibilità)));
 
                     var bottoneModifica = document.createElement('button');
                     bottoneModifica.className = "button-modify";
@@ -105,6 +126,12 @@
                     bottoneElimina.setAttribute("id", data[i].id);
                     bottoneElimina.setAttribute("onClick", "elimina(this.id)");
                     bottoneElimina.appendChild(document.createTextNode("Elimina"));
+
+                    var buttonAddToCart = document.createElement('button');
+                    buttonAddToCart.className = "button-addToCart";
+                    buttonAddToCart.setAttribute("type", "button");
+                    buttonAddToCart.setAttribute("id", data[i].id);
+                    buttonAddToCart.appendChild(document.createTextNode("Aggiungi al carrello"));
 
                     divProduct.appendChild(document.createElement('br'));
                     divProduct.appendChild(img);
@@ -123,12 +150,13 @@
                     }
                     divProduct.appendChild(indirizzo);
                     divProduct.appendChild(prezzo);
+                    divProduct.appendChild(disponibilità);
                     divProduct.appendChild(bottoneModifica);
                     divProduct.appendChild(bottoneElimina);
+                    divProduct.appendChild(buttonAddToCart);
                     divProduct.appendChild(document.createElement('br'));
-
-                    divMain.appendChild(divProduct);
-                    listItem.appendChild(divMain);
+                    
+                    listItem.appendChild(divProduct);
                     listaProdotti.appendChild(listItem);
                 }
 
@@ -136,10 +164,12 @@
                 divNessunaRicerca.className = "nessunaricerca";
                 divNessunaRicerca.appendChild(document.createTextNode("Nessun risultato"));
 
-                containerProdotti.appendChild(divNessunaRicerca);
+                listaProdotti.appendChild(divNessunaRicerca);
+
             }
             ;
 
+            //API getProdotti - method:GET
             // N.B. la dicitura function dopo l'URL non è omissibile poiché
             //jQuery la converte nel suo codice. Per ovviare al problema di sdoppiare
             //il codice ho definito una funzione e la chiamo dentro function
@@ -150,6 +180,7 @@
                 });
             });
 
+            //Dynamic refresh + API getProdotti - method:GET
             //Ricarica dinamica dei prodotti quando premo il pulsante.
             //Prima svuoto e poi richiamo la get.
             //Fare css.
@@ -163,6 +194,7 @@
                 });
             });
 
+            //Search + API getProdotti - method: GET
             $(document).ready(function () {
                 $(".nessunaricerca").hide()
                 $(".barraRicercaGenerale").keyup(function () {
@@ -196,6 +228,7 @@
                 });
             });
 
+            //API deleteProdotto - method: DELETE
             //Questa funzione viene chiamata dal botton
             //Bind nel tag HTML chiama questa funzione passandogli il suo id
             function elimina(idCliccato) {
@@ -217,8 +250,41 @@
                     });
 
                 });
+            }
 
+            //Cart
+            $(document).ready(function () {
+                var addCartItemButtons = document.getElementsByClassName('button-addToCart');
+                for (let i = 0; i < addCartItemButtons.length; i++) {
+                    var button = addCartItemButtons[i];
+                    button.addEventListener('click', addToCartClicked);
+                }
+            });
 
+            function addToCartClicked(event) {
+
+                var button = event.target;
+                var shopItem = button.parentElement;
+                var title = shopItem.getElementByClassName('product-name')[0].innerText;
+                var price = shopItem.getElementByClassName('price')[0].innerText;
+                var imageSource = shopItem.getElementByClassName('image-product')[0].src;
+
+                addItemToCart(title, price, imageSource);
+
+            }
+
+            function addItemToCart(title, price, imageSource) {
+
+                var listCarrelloItem = document.createElement('li');
+
+                var divProductCarrello = document.createElement('div');
+                divProductCarrello.className = "product";
+                
+                divProductCarrello.appendChild(document.createTextNode(title));
+                listCarrelloItem.appendChild(divProductCarrello);
+                
+                var listaCarrello = document.getElementById('listaCarrello');
+                listaCarrello.appendChild(listCarrelloItem);
             }
 
         </script>
