@@ -201,10 +201,11 @@
             });
 
             $(document).ready(function () {
-                $(".button-delete").click(function () {
-                    var id = $(this).closest('.id').value;
+                $(this).closest(".product").click(function () {
+                    var id = $(".button-delete").siblings('.id').value;
+                    var url = "https://happyfarmer.herokuapp.com/prodotti/" + id;
                     var settings = {
-                        "url": "https://happyfarmer.herokuapp.com/prodotti/" + id,
+                        "url": url,
                         "method": "DELETE",
                         "timeout": 0
                     };
