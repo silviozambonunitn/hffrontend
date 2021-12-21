@@ -19,6 +19,8 @@
 }
 
 .sidebar header{
+    height: auto;
+    width: auto;
     font-size: 22px;
     font-family: sans-serif;
     color:grey;
@@ -32,7 +34,7 @@
     display: block;
     height: 100%;
     width: 100%;
-    line-height: 65px;
+    line-height: 200%;
     font-size:20px;
     font-family: sans-serif;
     color:grey;
@@ -176,6 +178,25 @@ input[type=text]{
     padding-left: 10px;
 }
 
+.button-modify{
+    display: inline-block; 
+    margin: 1%;
+    width: 10%;
+    background-color: #db8c25; /* Orange */
+    border-radius: 8px;
+    border-width: 1.5px;
+    font-weight : bold;
+    color: white;
+    padding: 1%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 80%;
+}
+
+.button-modify:hover{
+    background-color: orange;
+}
+
 .button-update{
     display: block; 
     margin: auto;
@@ -227,10 +248,40 @@ input[type=text]{
 }
 
 .button-refresh{
+    border-width: 1.5px;
     float: right;
-    padding: 5px;
+    padding: 0.5%;
     display: inline-block;
+    margin: 0.5%;
+    background-color: #db8c25; /* Orange */
+    font-weight : bold;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 80%;
+}
+.button-refresh:hover{
+    background-color: orange;
+}
+
+.button-delete{
+    display: inline-block; 
     margin: 1%;
+    width: 10%;
+    background-color: #db8c25; /* Orange */
+    border-radius: 8px;
+    border-width: 1.5px;
+    font-weight : bold;
+    color: white;
+    padding: 1%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 80%;
+}
+
+.button-delete:hover{
+    background-color: orange;
 }
 
 .button-invio{

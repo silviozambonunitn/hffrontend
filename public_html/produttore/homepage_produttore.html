@@ -25,6 +25,7 @@
                 <li><a href="#"><i class="fas fa-list-ul"></i>Ordini</a></li>
                 <li><a href="homepage_produttore.html"><i class="fas fa-shopping-bag"></i>Prodotti</a></li>
                 <li><a href="statistiche_produttore.html"><i class="fas fa-chart-bar"></i>Statistiche</a></li>
+                <li><a href="creaprodotto_produttore.html"><i class="fas fa-plus"></i>Crea Prodotto</a></li>
                 <li><a href="qrcode_produttore.html"><i class="fas fa-qrcode"></i>Scansione QR</a></li>
                 <li><a href="../index.html"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
             </ul>
@@ -92,6 +93,21 @@
                     prezzo.className = "price";
                     prezzo.appendChild(document.createTextNode((data[i].prezzo) + " €/kg"));
 
+                    var idProdotto = document.createElement('p');
+                    idProdotto.className = "id";
+                    idProdotto.appendChild(document.createTextNode("ID: " + data[i].id));
+
+
+                    var bottoneModifica = document.createElement('button');
+                    bottoneModifica.className = "button-modify";
+                    bottoneModifica.setAttribute("type", "button");
+                    bottoneModifica.appendChild(document.createTextNode("Modifica"));
+
+                    var bottoneElimina = document.createElement('button');
+                    bottoneElimina.className = "button-delete";
+                    bottoneElimina.setAttribute("type", "button");
+                    bottoneElimina.appendChild(document.createTextNode("Elimina"));
+
                     divProduct.appendChild(document.createElement('br'));
                     divProduct.appendChild(img);
                     divProduct.appendChild(nomeProdotto);
@@ -109,6 +125,10 @@
                     }
                     divProduct.appendChild(indirizzo);
                     divProduct.appendChild(prezzo);
+                    divProduct.appendChild(idProdotto);
+                    idProdotto.style.display = "none";
+                    divProduct.appendChild(bottoneModifica);
+                    divProduct.appendChild(bottoneElimina);
                     divProduct.appendChild(document.createElement('br'));
 
                     divMain.appendChild(divProduct);
@@ -179,6 +199,21 @@
                     });
                 });
             });
+
+            $(document).ready(function () {
+                $(".button-delete").click(function () {
+                    var id = $(this).closest('.id').value;
+                    var settings = {
+                        "url": "https://happyfarmer.herokuapp.com/prodotti/" + id,
+                        "method": "DELETE",
+                        "timeout": 0
+                    };
+                    $.ajax(settings).done(function (response) {
+                        console.log(response);
+                    });
+                });
+            });
+
 
         </script>
     </body>
