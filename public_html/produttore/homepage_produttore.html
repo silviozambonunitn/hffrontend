@@ -254,11 +254,15 @@
 
             //Cart
             $(document).ready(function () {
-                var addCartItemButtons = document.getElementsByClassName('button-addToCart');
-                for (let i = 0; i < addCartItemButtons.length; i++) {
-                    var button = addCartItemButtons[i];
+                var addCartItemButtons = document.getElementsByClassName('button-addToCart')
+                console.log(addCartItemButtons);
+                for (var i = 0; i < addCartItemButtons.length; i++) {
+                    
+                    var button = addCartItemButtons[i]
                     button.addEventListener('click', addToCartClicked);
+                    
                 }
+                
             });
 
             function addToCartClicked(event) {
@@ -275,15 +279,9 @@
 
             function addItemToCart(title, price, imageSource) {
 
-                var listCarrelloItem = document.createElement('li');
+                var listCarrelloItem = document.createElement('div');
 
-                var divProductCarrello = document.createElement('div');
-                divProductCarrello.className = "product";
-                
-                divProductCarrello.appendChild(document.createTextNode(title));
-                listCarrelloItem.appendChild(divProductCarrello);
-                
-                var listaCarrello = document.getElementById('listaCarrello');
+            
                 listaCarrello.appendChild(listCarrelloItem);
             }
 
