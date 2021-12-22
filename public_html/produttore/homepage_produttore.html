@@ -1,290 +1,229 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Happy farmer - Prodotti</title>
-        <meta charset="utf-8">
-        <link href="../css/stile-homepage.css" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/ec08f2a466.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    </head>
-    <body>
-        <input type="checkbox" id="check">  
-        <label for="check">
-            <i class="fas fa-bars" id="btn"></i>
-            <i class="fas fa-times" id="cancel"></i>
-        </label>
 
-        <div class="sidebar">
-            <header>
-                <br>
-                <img class="user-logo" src="../images/userlogo.png" alt="userlogo">
-                <p class="user-name-surname">Nome Cognome</p>
-                <p class="user-email">user@domain.com</p>
-            </header>
-            <ul>
-                <li><a href="#"><i class="fas fa-list-ul"></i>Ordini</a></li>
-                <li><a href="homepage_produttore.html"><i class="fas fa-shopping-bag"></i>Prodotti</a></li>
-                <li><a href="statistiche_produttore.html"><i class="fas fa-chart-bar"></i>Statistiche</a></li>
-                <li><a href="creaprodotto_produttore.html"><i class="fas fa-plus"></i>Crea Prodotto</a></li>
-                <li><a href="qrcode_produttore.html"><i class="fas fa-qrcode"></i>Scansione QR</a></li>
-                <li><a href="../index.html"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
-            </ul>
-        </div>
+<head>
+    <title>Happy farmer - Prodotti</title>
+    <meta charset="utf-8">
+    <link href="../css/stile-homepage.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ec08f2a466.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
 
-        <div class="top">
+<body>
+    <input type="checkbox" id="check">
+    <label for="check">
+        <i class="fas fa-bars" id="btn"></i>
+        <i class="fas fa-times" id="cancel"></i>
+    </label>
+
+    <div class="sidebar">
+        <header>
             <br>
-            <input class="barraRicercaGenerale" type="text" placeholder="Ricerca Prodotti">
-            <button class="button-refresh">Ricarica <i class="fa fa-refresh"></i></button>
-            <br><br>
-        </div>
+            <img class="user-logo" src="../images/userlogo.png" alt="userlogo">
+            <p class="user-name-surname">Nome Cognome</p>
+            <p class="user-email">user@domain.com</p>
+        </header>
+        <ul>
+            <li><a href="#"><i class="fas fa-list-ul"></i>Ordini</a></li>
+            <li><a href="homepage_produttore.html"><i class="fas fa-shopping-bag"></i>Prodotti</a></li>
+            <li><a href="statistiche_produttore.html"><i class="fas fa-chart-bar"></i>Statistiche</a></li>
+            <li><a href="creaprodotto_produttore.html"><i class="fas fa-plus"></i>Crea Prodotto</a></li>
+            <li><a href="qrcode_produttore.html"><i class="fas fa-qrcode"></i>Scansione QR</a></li>
+            <li><a href="../index.html"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+        </ul>
+    </div>
 
-        <div class="container" id = "containerProdotti">
-        </div>
-        <script>
-            //Ajax con jQuery, $ significa jQuery
+    <div class="top">
+        <br>
+        <input class="barraRicercaGenerale" type="text" placeholder="Ricerca Prodotti">
+        <button class="button-refresh">Ricarica <i class="fa fa-refresh"></i></button>
+        <br><br>
+    </div>
 
-            //Qui dichiaro una funzione che prende tutti i prodotti, verrà usata
-            //quando carico la pagina per la prima volta e ogni volta che premo 
-            //il bottone
-            function prendiTuttiProdotti(data, status) {
+    <div class="container" id="containerProdotti"> </div>
+    <script>
+        //Ajax con jQuery, $ significa jQuery
 
-                var containerProdotti = document.getElementById("containerProdotti");
+        //Qui dichiaro una funzione che prende tutti i prodotti, verrà usata
+        //quando carico la pagina per la prima volta e ogni volta che premo 
+        //il bottone
+        function prendiTuttiProdotti(data, status) {
 
-                var sezioneCarrello = document.createElement('div');
-                sezioneCarrello.className = "category";
+            var containerProdotti = document.getElementById("containerProdotti");
 
-                var titoloCarrello = document.createElement('h1');
-                titoloCarrello.className = "category-name";
-                titoloCarrello.appendChild(document.createTextNode("Carrello"));
+            var divCategoria = document.createElement('div');
+            divCategoria.className = "category";
 
-                sezioneCarrello.appendChild(titoloCarrello);
-                containerProdotti.appendChild(sezioneCarrello);
+            var titolo = document.createElement('h1');
+            titolo.className = "category-name";
+            titolo.appendChild(document.createTextNode("Prodotti"));
 
-                var listaCarrello = document.createElement('ul');
-                listaCarrello.setAttribute("id", "listaCarrello");
+            divCategoria.appendChild(titolo);
 
-                containerProdotti.appendChild(listaCarrello);
+            containerProdotti.appendChild(divCategoria);
 
-                var nessunaEntryCarrello = document.createElement('div');
-                nessunaEntryCarrello.className = "nessunaEntryCarrello";
-                nessunaEntryCarrello.appendChild(document.createTextNode("Nessun elemento nel carrello"));
+            var listaProdotti = document.createElement('ul');
+            listaProdotti.setAttribute("id", "listaprodotti");
 
-                listaCarrello.appendChild(nessunaEntryCarrello);
+            containerProdotti.appendChild(listaProdotti);
 
-                var divCategoria = document.createElement('div');
-                divCategoria.className = "category";
+            for (var i = 0; i < data.length; i++) {
 
-                var titolo = document.createElement('h1');
-                titolo.className = "category-name";
-                titolo.appendChild(document.createTextNode("Prodotti"));
+                var listItem = document.createElement('li');
 
-                divCategoria.appendChild(titolo);
+                var divProduct = document.createElement('div');
+                divProduct.className = "product";
 
-                containerProdotti.appendChild(divCategoria);
+                var img = document.createElement('img');
+                img.className = "image-product";
+                img.setAttribute("alt", "product image");
+                img.setAttribute("src", "../images/lobster_dog_cut.jpg")
 
-                var listaProdotti = document.createElement('ul');
-                listaProdotti.setAttribute("id", "listaprodotti");
+                var nomeProdotto = document.createElement('h1');
+                nomeProdotto.className = "product-name";
+                nomeProdotto.appendChild(document.createTextNode((data[i].nome)));
 
-                containerProdotti.appendChild(listaProdotti);
+                var indirizzo = document.createElement('p');
+                indirizzo.className = "address";
+                //indirizzo.appendChild(document.createTextNode((data[i].indirizzo)));
 
-                for (var i = 0; i < data.length; i++) {
+                var prezzo = document.createElement('p');
+                prezzo.className = "price";
+                prezzo.appendChild(document.createTextNode((data[i].prezzo) + " €/kg"));
 
-                    var listItem = document.createElement('li');
+                var disponibilità = document.createElement('p');
+                disponibilità.className = "disponibilità";
+                disponibilità.appendChild(document.createTextNode("Disponibile: " + (data[i].disponibilità)));
 
-                    var divProduct = document.createElement('div');
-                    divProduct.className = "product";
+                var bottoneModifica = document.createElement('button');
+                bottoneModifica.className = "button-modify";
+                bottoneModifica.setAttribute("type", "button");
+                bottoneModifica.appendChild(document.createTextNode("Modifica"));
 
-                    var img = document.createElement('img');
-                    img.className = "image-product";
-                    img.setAttribute("alt", "product image");
-                    img.setAttribute("src", "../images/lobster_dog_cut.jpg")
+                var bottoneElimina = document.createElement('button');
+                bottoneElimina.className = "button-delete";
+                bottoneElimina.setAttribute("type", "button");
+                bottoneElimina.setAttribute("id", data[i].id);
+                bottoneElimina.setAttribute("onClick", "elimina(this.id)");
+                bottoneElimina.appendChild(document.createTextNode("Elimina"));
 
-                    var nomeProdotto = document.createElement('h1');
-                    nomeProdotto.className = "product-name";
-                    nomeProdotto.appendChild(document.createTextNode((data[i].nome)));
-
-                    var indirizzo = document.createElement('p');
-                    indirizzo.className = "address";
-                    //indirizzo.appendChild(document.createTextNode((data[i].indirizzo)));
-
-                    var prezzo = document.createElement('p');
-                    prezzo.className = "price";
-                    prezzo.appendChild(document.createTextNode((data[i].prezzo) + " €/kg"));
-
-                    var disponibilità = document.createElement('p');
-                    disponibilità.className = "disponibilità";
-                    disponibilità.appendChild(document.createTextNode("Disponibile: " + (data[i].disponibilità)));
-
-                    var bottoneModifica = document.createElement('button');
-                    bottoneModifica.className = "button-modify";
-                    bottoneModifica.setAttribute("type", "button");
-                    bottoneModifica.appendChild(document.createTextNode("Modifica"));
-
-                    var bottoneElimina = document.createElement('button');
-                    bottoneElimina.className = "button-delete";
-                    bottoneElimina.setAttribute("type", "button");
-                    bottoneElimina.setAttribute("id", data[i].id);
-                    bottoneElimina.setAttribute("onClick", "elimina(this.id)");
-                    bottoneElimina.appendChild(document.createTextNode("Elimina"));
-
-                    var buttonAddToCart = document.createElement('button');
-                    buttonAddToCart.className = "button-addToCart";
-                    buttonAddToCart.setAttribute("type", "button");
-                    buttonAddToCart.setAttribute("id", data[i].id);
-                    buttonAddToCart.appendChild(document.createTextNode("Aggiungi al carrello"));
-
-                    divProduct.appendChild(document.createElement('br'));
-                    divProduct.appendChild(img);
-                    divProduct.appendChild(nomeProdotto);
-                    var sommaQualitàPrezzo = 0;
-                    for (let j = 0; j < data[i].recensioni.length; j++) {
-                        sommaQualitàPrezzo += data[i].recensioni[j].qualitàPrezzo;
-                        if (j === data[i].recensioni.length) { //Se sono arrivato all'ultimo
-                            sommaQualitàPrezzo = Math.round(sommaQualitàPrezzo);
-                            for (let k = 0; k < sommaQualitàPrezzo; k++) {
-                                var tagI = document.createElement('i');
-                                tagI.className = "fas fa-star";
-                                divProduct.appendChild(tagI);
-                            }
+                divProduct.appendChild(document.createElement('br'));
+                divProduct.appendChild(img);
+                divProduct.appendChild(nomeProdotto);
+                var sommaQualitàPrezzo = 0;
+                for (let j = 0; j < data[i].recensioni.length; j++) {
+                    sommaQualitàPrezzo += data[i].recensioni[j].qualitàPrezzo;
+                    if (j === data[i].recensioni.length) { //Se sono arrivato all'ultimo
+                        sommaQualitàPrezzo = Math.round(sommaQualitàPrezzo);
+                        for (let k = 0; k < sommaQualitàPrezzo; k++) {
+                            var tagI = document.createElement('i');
+                            tagI.className = "fas fa-star";
+                            divProduct.appendChild(tagI);
                         }
                     }
-                    divProduct.appendChild(indirizzo);
-                    divProduct.appendChild(prezzo);
-                    divProduct.appendChild(disponibilità);
-                    divProduct.appendChild(bottoneModifica);
-                    divProduct.appendChild(bottoneElimina);
-                    divProduct.appendChild(buttonAddToCart);
-                    divProduct.appendChild(document.createElement('br'));
-                    
-                    listItem.appendChild(divProduct);
-                    listaProdotti.appendChild(listItem);
                 }
+                divProduct.appendChild(indirizzo);
+                divProduct.appendChild(prezzo);
+                divProduct.appendChild(disponibilità);
+                divProduct.appendChild(bottoneModifica);
+                divProduct.appendChild(bottoneElimina);
+                divProduct.appendChild(document.createElement('br'));
 
-                var divNessunaRicerca = document.createElement('div');
-                divNessunaRicerca.className = "nessunaricerca";
-                divNessunaRicerca.appendChild(document.createTextNode("Nessun risultato"));
-
-                listaProdotti.appendChild(divNessunaRicerca);
-
+                listItem.appendChild(divProduct);
+                listaProdotti.appendChild(listItem);
             }
-            ;
 
-            //API getProdotti - method:GET
-            // N.B. la dicitura function dopo l'URL non è omissibile poiché
-            //jQuery la converte nel suo codice. Per ovviare al problema di sdoppiare
-            //il codice ho definito una funzione e la chiamo dentro function
-            $(document).ready(function () {
+            var divNessunaRicerca = document.createElement('div');
+            divNessunaRicerca.className = "nessunaricerca";
+            divNessunaRicerca.appendChild(document.createTextNode("Nessun risultato"));
+
+            listaProdotti.appendChild(divNessunaRicerca);
+        }
+        ;
+
+        //API getProdotti - method:GET
+        // N.B. la dicitura function dopo l'URL non è omissibile poiché
+        //jQuery la converte nel suo codice. Per ovviare al problema di sdoppiare
+        //il codice ho definito la funzione prendiTuttiiProdotti e la chiamo dentro function
+        $(document).ready(function () {
+            return $.get("https://happyfarmer.herokuapp.com/prodotti", function (data, status) {
+                prendiTuttiProdotti(data, status);
+                $(".nessunaricerca").hide();
+            });
+        });
+
+        //Dynamic refresh + API getProdotti - method:GET
+        //Ricarica dinamica dei prodotti quando premo il pulsante.
+        //Prima svuoto e poi richiamo la get.
+        //Fare css.
+        $(document).ready(function () {
+            $(".button-refresh").click(function () {
                 $.get("https://happyfarmer.herokuapp.com/prodotti", function (data, status) {
+                    $("#containerProdotti").empty();
                     prendiTuttiProdotti(data, status);
                     $(".nessunaricerca").hide();
                 });
             });
+        });
 
-            //Dynamic refresh + API getProdotti - method:GET
-            //Ricarica dinamica dei prodotti quando premo il pulsante.
-            //Prima svuoto e poi richiamo la get.
-            //Fare css.
+        //Search + API getProdotti - method: GET
+        $(document).ready(function () {
+            $(".nessunaricerca").hide()
+            $(".barraRicercaGenerale").keyup(function () {
+
+                //Prendo la stringa dalla barra e la inserisco in una variabile e
+                //imposto un contatore di supporto.
+                //Il contatore mi serve solo per mostrare una risposta in caso di mancata corrispondenza
+                var filtro = $(this).val(), contatore = 0;
+
+                if (contatore == 0) {
+                    $(".nessunaricerca").hide()
+                }
+
+                //Ciclo all'interno della lista per ogni <li>
+                $("#listaprodotti li").each(function () {
+                    //Se in questo <li> non è presente il testo allora lo nascondo
+                    //RegExp prende il pattern filtro e esegue una ricerca,
+                    //significa insensitive
+                    if ($(this).text().search(new RegExp(filtro, "i")) < 0) {
+                        $(this).hide() //Qui viene nascosto
+                        if (contatore == 0) { //Se non c'è più nulla e il contatore è a 0 allora non ho trovato nulla
+                            $(".nessunaricerca").show()
+                        } else {    //Può essere che prima abbia trovato qualcosa quindi se il contatore è > 0 allora nascondo il meessaggio
+                            $(".nessunaricerca").hide()
+                        }
+                    } else {
+                        $(this).show(); //Qui è presente il pattern quindi lo mostro
+                        contatore++; //Aumento il contatore per tenermi a memoria che qualcosa l'ho trovato ad un certo punto
+                    }
+                });
+            });
+        });
+
+        //API deleteProdotto - method: DELETE
+        //Questa funzione viene chiamata dal botton
+        //Bind nel tag HTML chiama questa funzione passandogli il suo id
+        function elimina(idCliccato) {
             $(document).ready(function () {
-                $(".button-refresh").click(function () {
+                var url = "https://happyfarmer.herokuapp.com/prodotti/" + idCliccato;
+                var settings = {
+                    "url": url,
+                    "method": "DELETE",
+                    "timeout": 0
+                };
+
+                $.ajax(settings).done(function (response) {
+                    //Svuoto e ricarico la pagina
                     $.get("https://happyfarmer.herokuapp.com/prodotti", function (data, status) {
                         $("#containerProdotti").empty();
                         prendiTuttiProdotti(data, status);
                         $(".nessunaricerca").hide();
                     });
                 });
+
             });
+        }
+    </script>
+</body>
 
-            //Search + API getProdotti - method: GET
-            $(document).ready(function () {
-                $(".nessunaricerca").hide()
-                $(".barraRicercaGenerale").keyup(function () {
-
-                    //Prendo la stringa dalla barra e la inserisco in una variabile e
-                    //imposto un contatore di supporto.
-                    //Il contatore mi serve solo per mostrare una risposta in caso di mancata corrispondenza
-                    var filtro = $(this).val(), contatore = 0;
-
-                    if (contatore == 0) {
-                        $(".nessunaricerca").hide()
-                    }
-
-                    //Ciclo all'interno della lista per ogni <li>
-                    $("#listaprodotti li").each(function () {
-                        //Se in questo <li> non è presente il testo allora lo nascondo
-                        //RegExp prende il pattern filtro e esegue una ricerca,
-                        //significa insensitive
-                        if ($(this).text().search(new RegExp(filtro, "i")) < 0) {
-                            $(this).hide() //Qui viene nascosto
-                            if (contatore == 0) { //Se non c'è più nulla e il contatore è a 0 allora non ho trovato nulla
-                                $(".nessunaricerca").show()
-                            } else {    //Può essere che prima abbia trovato qualcosa quindi se il contatore è > 0 allora nascondo il meessaggio
-                                $(".nessunaricerca").hide()
-                            }
-                        } else {
-                            $(this).show(); //Qui è presente il pattern quindi lo mostro
-                            contatore++; //Aumento il contatore per tenermi a memoria che qualcosa l'ho trovato ad un certo punto
-                        }
-                    });
-                });
-            });
-
-            //API deleteProdotto - method: DELETE
-            //Questa funzione viene chiamata dal botton
-            //Bind nel tag HTML chiama questa funzione passandogli il suo id
-            function elimina(idCliccato) {
-                $(document).ready(function () {
-                    var url = "https://happyfarmer.herokuapp.com/prodotti/" + idCliccato;
-                    var settings = {
-                        "url": url,
-                        "method": "DELETE",
-                        "timeout": 0
-                    };
-
-                    $.ajax(settings).done(function (response) {
-                        //Svuoto e ricarico la pagina
-                        $.get("https://happyfarmer.herokuapp.com/prodotti", function (data, status) {
-                            $("#containerProdotti").empty();
-                            prendiTuttiProdotti(data, status);
-                            $(".nessunaricerca").hide();
-                        });
-                    });
-
-                });
-            }
-
-            //Cart
-            $(document).ready(function () {
-                var addCartItemButtons = document.getElementsByClassName('button-addToCart')
-                console.log(addCartItemButtons);
-                for (var i = 0; i < addCartItemButtons.length; i++) {
-                    
-                    var button = addCartItemButtons[i]
-                    button.addEventListener('click', addToCartClicked);
-                    
-                }
-                
-            });
-
-            function addToCartClicked(event) {
-
-                var button = event.target;
-                var shopItem = button.parentElement;
-                var title = shopItem.getElementByClassName('product-name')[0].innerText;
-                var price = shopItem.getElementByClassName('price')[0].innerText;
-                var imageSource = shopItem.getElementByClassName('image-product')[0].src;
-
-                addItemToCart(title, price, imageSource);
-
-            }
-
-            function addItemToCart(title, price, imageSource) {
-
-                var listCarrelloItem = document.createElement('div');
-
-            
-                listaCarrello.appendChild(listCarrelloItem);
-            }
-
-        </script>
-    </body>
 </html>

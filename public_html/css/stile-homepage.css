@@ -58,7 +58,7 @@ ul li:hover a{
 }
 
 label #btn,label #cancel{
-    position: absolute;
+    position: fixed;
     cursor:pointer;
     border-radius: 3px;
 }
