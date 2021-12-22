@@ -102,18 +102,6 @@
                 disponibilità.className = "disponibilità";
                 disponibilità.appendChild(document.createTextNode("Disponibile: " + (data[i].disponibilità)));
 
-                var bottoneModifica = document.createElement('button');
-                bottoneModifica.className = "button-modify";
-                bottoneModifica.setAttribute("type", "button");
-                bottoneModifica.appendChild(document.createTextNode("Modifica"));
-
-                var bottoneElimina = document.createElement('button');
-                bottoneElimina.className = "button-delete";
-                bottoneElimina.setAttribute("type", "button");
-                bottoneElimina.setAttribute("id", data[i].id);
-                bottoneElimina.setAttribute("onClick", "elimina(this.id)");
-                bottoneElimina.appendChild(document.createTextNode("Elimina"));
-
                 var buttonAddToCart = document.createElement('button');
                 buttonAddToCart.className = "button-addToCart";
                 buttonAddToCart.setAttribute("type", "button");
@@ -138,8 +126,6 @@
                 divProduct.appendChild(indirizzo);
                 divProduct.appendChild(prezzo);
                 divProduct.appendChild(disponibilità);
-                divProduct.appendChild(bottoneModifica);
-                divProduct.appendChild(bottoneElimina);
                 divProduct.appendChild(buttonAddToCart);
                 divProduct.appendChild(document.createElement('br'));
 
