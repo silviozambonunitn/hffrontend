@@ -232,16 +232,19 @@ input[type=text]{
 .button-invio{
     display: block; 
     margin: auto;
-    width: 250px;
+    width: 15%;
     background-color: #db8c25; /* Orange */
     border-radius: 8px;
     font-weight : bold;
-    border: none;
+    border-width: 1.5px;
     color: white;
     padding: 14px 40px;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
+}
+.button-invio:hover{
+    background-color: orange;
 }
 
 /*Kekko*/
@@ -332,6 +335,8 @@ input[type=text]{
 }
 
 .cart-page{
+    
+    padding: 1%;
     margin: auto;
     width: 90%;
     height: 100%;

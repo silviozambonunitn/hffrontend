@@ -1,45 +1,52 @@
 <!DOCTYPE html>
-    <html>
-        <head>
-            <title>Home</title>
-            <meta charset="utf-8">
-            <link href="../css/stile-homepage.css" rel="stylesheet">
-            <script src="https://kit.fontawesome.com/ec08f2a466.js"></script>
-            <script src="document.js"></script>
-        </head>
-        <body>
-          <input type="checkbox" id="check">  
-          <label for="check">
-            <i class="fas fa-bars" id="btn"></i>
-            <i class="fas fa-times" id="cancel"></i>
-          </label>
+<html>
 
-            <div class="sidebar">
-              <header>
-                <br>
-                <img class="user-logo" src="../images/userlogo.png" alt="userlogo">
-                <p class="user-name-surname">Nome Cognome</p>
-                <p class="user-email">user@domain.com</p>
-              </header>
-              <ul>
-                <li><a href="#"><i class="fas fa-list-ul"></i>Ordini</a></li>
-                <li><a href="carrello_cliente.html"><i class="fas fa-shopping-cart"></i>Carrello</a></li>
-                <li><a href="ricercaprodotti_cliente.html"><i class="fas fa-search"></i>Ricerca Prodotti</a></li>
-                <li><a href="ricercaproduttori_cliente.html"><i class="fas fa-search"></i>Ricerca Produttori</a></li>
-              </ul>
-            </div>
+<head>
+  <title>Home</title>
+  <meta charset="utf-8">
+  <link href="../css/stile-homepage.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/ec08f2a466.js"></script>
+  <script src="document.js"></script>
+</head>
 
-        
-            <br><br><br><br><br><br>
-            
-              <div class="cart-page">
-                <table>
-                  <tr>
-                    <th>Prodotto</th>
-                    <th>Quantità</th>
-                    <th>Subtotale</th>
-                  </tr>
-                <!--
+<body>
+  <input type="checkbox" id="check">
+  <label for="check">
+    <i class="fas fa-bars" id="btn"></i>
+    <i class="fas fa-times" id="cancel"></i>
+  </label>
+
+  <div class="sidebar">
+    <header>
+      <br>
+      <img class="user-logo" src="../images/userlogo.png" alt="userlogo">
+      <p class="user-name-surname">Nome Cognome</p>
+      <p class="user-email">user@domain.com</p>
+    </header>
+    <ul>
+      <li><a href="#"><i class="fas fa-list-ul"></i>Ordini</a></li>
+      <li><a href="carrello_cliente.html"><i class="fas fa-shopping-cart"></i>Carrello</a></li>
+      <li><a href="ricercaprodotti_cliente.html"><i class="fas fa-search"></i>Ricerca Prodotti</a></li>
+      <li><a href="ricercaproduttori_cliente.html"><i class="fas fa-search"></i>Ricerca Produttori</a></li>
+    </ul>
+  </div>
+
+
+  <div class="top">
+    <div class="category">
+      <h1 class="category-name" style="text-align: center;">Happy Famer</h1>
+    </div>
+  </div>
+
+  <br><br>
+  <div class="cart-page">
+    <table>
+      <tr>
+        <th>Prodotto</th>
+        <th>Quantità</th>
+        <th>Subtotale</th>
+      </tr>
+      <!--
                   <script>
                     fetch("https://happyfarmer.herokuapp.com/prodotti")
                     .then(function (response) {
@@ -57,40 +64,41 @@
                     }              
                   </script>
                 -->
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div class="cart-info">
-                          <img class="image-product" src="../images/pomodoro-datterino.jpg" alt="cart product image">
-                          <div>
-                            <p>Pomodori Datterini</p>
-                            <small>Prezzo: 50$</small><br>
-                            <a href="">Rimuovi</a>
-                          </div>
-                        </div>
-                      </td>
-                      <td><input type="number" value="1"></td>
-                      <td>$50.00</td>
-                    </tr>
-                  </tbody>
+      <tbody>
+        <tr>
+          <td>
+            <div class="cart-info">
+              <img class="image-product" src="../images/pomodoro-datterino.jpg" alt="cart product image">
+              <div>
+                <p>Pomodori Datterini</p>
+                <small>Prezzo: 50$</small><br>
+                <a href="">Rimuovi</a>
+              </div>
+            </div>
+          </td>
+          <td><input type="number" value="1"></td>
+          <td>$50.00</td>
+        </tr>
+      </tbody>
 
-                </table> 
-                <div class="total-price">
-                  <table class="tabella-ordini">
-                    <tr>
-                      <td class="td-ordini">Subtotal</td>
-                      <td class="td-ordini">$200</td>
-                    </tr>
-                    <tr>
-                      <td class="td-ordini">Tax</td>
-                      <td class="td-ordini">$200</td>
-                    </tr>
-                    <tr>
-                      <td class="td-ordini">total</td>
-                      <td class="td-ordini">$200</td>
-                    </tr>
-                  </table>
-                </div> 
-              </div> 
-        </body>
-    </html>
+    </table>
+    <div class="total-price">
+      <table class="tabella-ordini">
+        <tr>
+          <td class="td-ordini">Subtotal</td>
+          <td class="td-ordini">$200</td>
+        </tr>
+        <tr>
+          <td class="td-ordini">Tax</td>
+          <td class="td-ordini">$200</td>
+        </tr>
+        <tr>
+          <td class="td-ordini">total</td>
+          <td class="td-ordini">$200</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+
+</html>

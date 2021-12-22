@@ -1,63 +1,69 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Home</title>
-        <meta charset="utf-8">
-        <link href="../css/stile-homepage.css" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/ec08f2a466.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-        <script src="html5-qrcode.min.js"></script>
-    </head>
-    <body>
-        <input type="checkbox" id="check">  
-        <label for="check">
-            <i class="fas fa-bars" id="btn"></i>
-            <i class="fas fa-times" id="cancel"></i>
-        </label>
 
-        <div class="sidebar">
-            <header>
-                <br>
-                <img class="user-logo" src="../images/userlogo.png" alt="userlogo">
-                <p class="user-name-surname">Nome Cognome</p>
-                <p class="user-email">user@domain.com</p>
-            </header>
-            <ul>
-                <li><a href="#"><i class="fas fa-list-ul"></i>Ordini</a></li>
-                <li><a href="homepage_produttore.html"><i class="fas fa-shopping-bag"></i>Prodotti</a></li>
-                <li><a href="statistiche_produttore.html"><i class="fas fa-chart-bar"></i>Statistiche</a></li>
-                <li><a href="creaprodotto_produttore.html"><i class="fas fa-plus"></i>Crea Prodotto</a></li>
-                <li><a href="qrcode_produttore.html"><i class="fas fa-qrcode"></i>Scansione QR</a></li>
-                <li><a href="../index.html"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
-            </ul>
+<head>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <link href="../css/stile-homepage.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ec08f2a466.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="html5-qrcode.min.js"></script>
+</head>
+
+<body>
+    <input type="checkbox" id="check">
+    <label for="check">
+        <i class="fas fa-bars" id="btn"></i>
+        <i class="fas fa-times" id="cancel"></i>
+    </label>
+
+    <div class="sidebar">
+        <header>
+            <br>
+            <img class="user-logo" src="../images/userlogo.png" alt="userlogo">
+            <p class="user-name-surname">Nome Cognome</p>
+            <p class="user-email">user@domain.com</p>
+        </header>
+        <ul>
+            <li><a href="#"><i class="fas fa-list-ul"></i>Ordini</a></li>
+            <li><a href="homepage_produttore.html"><i class="fas fa-shopping-bag"></i>Prodotti</a></li>
+            <li><a href="statistiche_produttore.html"><i class="fas fa-chart-bar"></i>Statistiche</a></li>
+            <li><a href="creaprodotto_produttore.html"><i class="fas fa-plus"></i>Crea Prodotto</a></li>
+            <li><a href="qrcode_produttore.html"><i class="fas fa-qrcode"></i>Scansione QR</a></li>
+            <li><a href="../index.html"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+        </ul>
+    </div>
+    <div class="top">
+        <div class="category">
+            <h1 class="category-name" style="text-align: center;">Happy Famer</h1>
         </div>
-        <div class="container">
-            <div class="top">
-                <br><br><br><br><br><br>
+    </div>
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col">
+                <div style="width:500px;" id="reader"></div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <div style="width:500px;" id="reader"></div>
-                </div>
-                <div class="col" style="padding:30px;">
-                    <h4>SCAN RESULT</h4>
-                    <div id="result">Result Here</div>
-                </div>
+            <div class="col" style="padding:30px;">
+                <h4>SCAN RESULT</h4>
+                <div id="result">Result Here</div>
             </div>
-
-            <script type="text/javascript">
-                function onScanSuccess(qrCodeMessage) {
-                    document.getElementById('result').innerHTML = '<span class="result">' + qrCodeMessage + '</span>';
-                }
-                function onScanError(errorMessage) {
-                    //handle scan error
-                }
-                var html5QrcodeScanner = new Html5QrcodeScanner(
-                        "reader", {fps: 10, qrbox: 250});
-                html5QrcodeScanner.render(onScanSuccess, onScanError);
-            </script>
-
         </div>
-    </body>
+
+        <script type="text/javascript">
+            function onScanSuccess(qrCodeMessage) {
+                document.getElementById('result').innerHTML = '<span class="result">' + qrCodeMessage + '</span>';
+            }
+            function onScanError(errorMessage) {
+                //handle scan error
+            }
+            var html5QrcodeScanner = new Html5QrcodeScanner(
+                "reader", { fps: 10, qrbox: 250 });
+            html5QrcodeScanner.render(onScanSuccess, onScanError);
+        </script>
+
+    </div>
+</body>
+
 </html>

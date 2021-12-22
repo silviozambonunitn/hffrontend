@@ -33,6 +33,9 @@
     </div>
 
     <div class="top">
+        <div class="category">
+            <h1 class="category-name" style="text-align: center;">Happy Famer</h1>
+        </div>
         <br>
         <input class="barraRicercaGenerale" type="text" placeholder="Ricerca nome, prezzo...">
         <button class="button-refresh">Ricarica <i class="fa fa-refresh"></i></button>
@@ -223,7 +226,7 @@
 
             var divProdottoCarrello = document.createElement('div');
             divProdottoCarrello.className = "product";
-            
+
             var tagImmagine = document.createElement('img');
             tagImmagine.className = "image-product";
             tagImmagine.setAttribute("alt", "product image");
@@ -242,7 +245,7 @@
             divProdottoCarrello.appendChild(tagPrezzo);
             listItemCarrello.appendChild(divProdottoCarrello);
 
-            
+
 
             listaCarrello.appendChild(listItemCarrello);
 
