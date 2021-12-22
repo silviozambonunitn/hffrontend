@@ -105,11 +105,6 @@
                 disponibilità.className = "disponibilità";
                 disponibilità.appendChild(document.createTextNode("Disponibile: " + (data[i].disponibilità)));
 
-                var bottoneModifica = document.createElement('button');
-                bottoneModifica.className = "button-modify";
-                bottoneModifica.setAttribute("type", "button");
-                bottoneModifica.appendChild(document.createTextNode("Modifica"));
-
                 var buttonAddToCart = document.createElement('button');
                 buttonAddToCart.className = "button-addToCart";
                 buttonAddToCart.setAttribute("type", "button");
@@ -134,7 +129,6 @@
                 divProduct.appendChild(indirizzo);
                 divProduct.appendChild(prezzo);
                 divProduct.appendChild(disponibilità);
-                divProduct.appendChild(bottoneModifica);
                 divProduct.appendChild(buttonAddToCart);
                 divProduct.appendChild(document.createElement('br'));
 
@@ -208,6 +202,30 @@
                 });
             });
         });
+
+        //API deleteProdotto - method: DELETE
+        //Questa funzione viene chiamata dal botton
+        //Bind nel tag HTML chiama questa funzione passandogli il suo id
+        function elimina(idCliccato) {
+            $(document).ready(function () {
+                var url = "https://happyfarmer.herokuapp.com/prodotti/" + idCliccato;
+                var settings = {
+                    "url": url,
+                    "method": "DELETE",
+                    "timeout": 0
+                };
+
+                $.ajax(settings).done(function (response) {
+                    //Svuoto e ricarico la pagina
+                    $.get("https://happyfarmer.herokuapp.com/prodotti", function (data, status) {
+                        $("#containerProdotti").empty();
+                        prendiTuttiProdotti(data, status);
+                        $(".nessunaricerca").hide();
+                    });
+                });
+
+            });
+        }
 
         function aggiungiProdottoCarrello(event) {
 
